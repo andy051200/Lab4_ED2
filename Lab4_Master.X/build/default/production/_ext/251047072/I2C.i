@@ -1,108 +1,15 @@
 
-# 1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
+# 1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c"
+
+# 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\xc.h"
+extern const char __xc8_OPTIM_SPEED;
+
+extern double __fpnormalize(double);
 
 
-# 15
-#pragma config FOSC = INTRC_NOCLKOUT
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-#pragma config LVP = OFF
-
-
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
-
-# 13 "C:\Program Files\Microchip\xc8\v2.31\pic\include\c90\stdint.h"
-typedef signed char int8_t;
-
-# 20
-typedef signed int int16_t;
-
-# 28
-typedef __int24 int24_t;
-
-# 36
-typedef signed long int int32_t;
-
-# 52
-typedef unsigned char uint8_t;
-
-# 58
-typedef unsigned int uint16_t;
-
-# 65
-typedef __uint24 uint24_t;
-
-# 72
-typedef unsigned long int uint32_t;
-
-# 88
-typedef signed char int_least8_t;
-
-# 96
-typedef signed int int_least16_t;
-
-# 109
-typedef __int24 int_least24_t;
-
-# 118
-typedef signed long int int_least32_t;
-
-# 136
-typedef unsigned char uint_least8_t;
-
-# 143
-typedef unsigned int uint_least16_t;
-
-# 154
-typedef __uint24 uint_least24_t;
-
-# 162
-typedef unsigned long int uint_least32_t;
-
-# 181
-typedef signed char int_fast8_t;
-
-# 188
-typedef signed int int_fast16_t;
-
-# 200
-typedef __int24 int_fast24_t;
-
-# 208
-typedef signed long int int_fast32_t;
-
-# 224
-typedef unsigned char uint_fast8_t;
-
-# 230
-typedef unsigned int uint_fast16_t;
-
-# 240
-typedef __uint24 uint_fast24_t;
-
-# 247
-typedef unsigned long int uint_fast32_t;
-
-# 268
-typedef int32_t intmax_t;
-
-# 282
-typedef uint32_t uintmax_t;
-
-# 289
-typedef int16_t intptr_t;
-
-
-
-
-typedef uint16_t uintptr_t;
+# 13 "C:\Program Files\Microchip\xc8\v2.31\pic\include\c90\xc8debug.h"
+#pragma intrinsic(__builtin_software_breakpoint)
+extern void __builtin_software_breakpoint(void);
 
 # 52 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h"
 extern volatile unsigned char INDF __at(0x000);
@@ -2556,19 +2463,6 @@ extern volatile __bit nW __at(0x4A2);
 
 extern volatile __bit nWRITE __at(0x4A2);
 
-# 14 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Osc_config.h"
-void osc_config(uint8_t freq);
-
-# 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\xc.h"
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-# 13 "C:\Program Files\Microchip\xc8\v2.31\pic\include\c90\xc8debug.h"
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
-
 
 # 30 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h"
 #pragma intrinsic(__nop)
@@ -2597,15 +2491,91 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 37 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.h"
-void lcd_init();
-void lcd_clear(void);
-void cmd(unsigned char a);
-void dat(unsigned char b);
-void show(unsigned char *s);
-void lcd_linea(char a, char b);
-void lcd_mov_derecha(void);
-void lcd_mov_izquierda(void);
+# 13 "C:\Program Files\Microchip\xc8\v2.31\pic\include\c90\stdint.h"
+typedef signed char int8_t;
+
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef __int24 int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 52
+typedef unsigned char uint8_t;
+
+# 58
+typedef unsigned int uint16_t;
+
+# 65
+typedef __uint24 uint24_t;
+
+# 72
+typedef unsigned long int uint32_t;
+
+# 88
+typedef signed char int_least8_t;
+
+# 96
+typedef signed int int_least16_t;
+
+# 109
+typedef __int24 int_least24_t;
+
+# 118
+typedef signed long int int_least32_t;
+
+# 136
+typedef unsigned char uint_least8_t;
+
+# 143
+typedef unsigned int uint_least16_t;
+
+# 154
+typedef __uint24 uint_least24_t;
+
+# 162
+typedef unsigned long int uint_least32_t;
+
+# 181
+typedef signed char int_fast8_t;
+
+# 188
+typedef signed int int_fast16_t;
+
+# 200
+typedef __int24 int_fast24_t;
+
+# 208
+typedef signed long int int_fast32_t;
+
+# 224
+typedef unsigned char uint_fast8_t;
+
+# 230
+typedef unsigned int uint_fast16_t;
+
+# 240
+typedef __uint24 uint_fast24_t;
+
+# 247
+typedef unsigned long int uint_fast32_t;
+
+# 268
+typedef int32_t intmax_t;
+
+# 282
+typedef uint32_t uintmax_t;
+
+# 289
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
 
 # 29 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.h"
 void I2C_Master_Init(const unsigned long c);
@@ -2637,75 +2607,87 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 void I2C_Slave_Init(uint8_t address);
 
-# 48 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
-void setup(void);
-
-# 66
-void main(void)
+# 16 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c"
+void I2C_Master_Init(const unsigned long c)
 {
-setup();
-
-lcd_clear();
-lcd_init();
-cmd(0x90);
-_delay((unsigned long)((1)*(8000000/4000.0)));
-
-
-while(1)
-{
-
-I2C_Master_Start();
-I2C_Master_Write(0x50);
-I2C_Master_Write(PORTA);
-I2C_Master_Stop();
-_delay((unsigned long)((200)*(8000000/4000.0)));
-
-I2C_Master_Start();
-I2C_Master_Write(0x51);
-PORTE = I2C_Master_Read(0);
-I2C_Master_Stop();
-_delay((unsigned long)((200)*(8000000/4000.0)));
-PORTA++;
-
-
-lcd_linea(1,1);
-show(PORTA);
-lcd_linea(2,1);
-show(PORTD);
-
+SSPCON = 0b00101000;
+SSPCON2 = 0;
+SSPADD = (8000000/(4*c))-1;
+SSPSTAT = 0;
+TRISCbits.TRISC3 = 1;
+TRISCbits.TRISC4 = 1;
 }
 
+# 32
+void I2C_Master_Wait()
+{
+while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
 }
 
-# 104
-void setup(void)
+
+
+void I2C_Master_Start()
 {
-
-ANSEL=0;
-ANSELH=0;
-ANSELbits.ANS0=1;
-ANSELbits.ANS1=1;
-
-
-TRISA=0;
-TRISB=0;
-TRISD=0;
-TRISDbits.TRISD5=0;
-TRISDbits.TRISD6=0;
-TRISDbits.TRISD7=0;
+I2C_Master_Wait();
+SSPCON2bits.SEN = 1;
+}
 
 
 
-PORTA=0;
-PORTB=0;
-PORTD=0;
+void I2C_Master_RepeatedStart()
+{
+I2C_Master_Wait();
+SSPCON2bits.RSEN = 1;
+}
 
 
-osc_config(8);
-I2C_Master_Init(100000);
+
+void I2C_Master_Stop()
+{
+I2C_Master_Wait();
+SSPCON2bits.PEN = 1;
+}
+
+# 65
+void I2C_Master_Write(unsigned d)
+{
+I2C_Master_Wait();
+SSPBUF = d;
+}
 
 
-INTCONbits.GIE=0;
-INTCONbits.PEIE=0;
+
+
+unsigned short I2C_Master_Read(unsigned short a)
+{
+unsigned short temp;
+I2C_Master_Wait();
+SSPCON2bits.RCEN = 1;
+I2C_Master_Wait();
+temp = SSPBUF;
+I2C_Master_Wait();
+if(a == 1){
+SSPCON2bits.ACKDT = 0;
+}else{
+SSPCON2bits.ACKDT = 1;
+}
+SSPCON2bits.ACKEN = 1;
+return temp;
+}
+
+
+
+void I2C_Slave_Init(uint8_t address)
+{
+SSPADD = address;
+SSPCON = 0x36;
+SSPSTAT = 0x80;
+SSPCON2 = 0x01;
+TRISC3 = 1;
+TRISC4 = 1;
+GIE = 1;
+PEIE = 1;
+SSPIF = 0;
+SSPIE = 1;
 }
 
