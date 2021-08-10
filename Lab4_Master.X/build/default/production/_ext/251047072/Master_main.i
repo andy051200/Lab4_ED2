@@ -3,7 +3,7 @@
 
 
 # 15
-#pragma config FOSC = INTRC_NOCLKOUT
+#pragma config FOSC = EXTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2556,9 +2556,6 @@ extern volatile __bit nW __at(0x4A2);
 
 extern volatile __bit nWRITE __at(0x4A2);
 
-# 14 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Osc_config.h"
-void osc_config(uint8_t freq);
-
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
 
@@ -2597,16 +2594,6 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 37 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.h"
-void lcd_init();
-void lcd_clear(void);
-void cmd(unsigned char a);
-void dat(unsigned char b);
-void show(unsigned char *s);
-void lcd_linea(char a, char b);
-void lcd_mov_derecha(void);
-void lcd_mov_izquierda(void);
-
 # 29 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.h"
 void I2C_Master_Init(const unsigned long c);
 
@@ -2637,20 +2624,31 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 void I2C_Slave_Init(uint8_t address);
 
-# 48 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
+# 37 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.h"
+void lcd_init();
+void lcd_clear(void);
+void cmd(unsigned char a);
+void dat(unsigned char b);
+void show(unsigned char *s);
+void lcd_linea(char a, char b);
+void lcd_mov_derecha(void);
+void lcd_mov_izquierda(void);
+
+# 50 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
 void setup(void);
 
-# 66
+# 55
+void __interrupt() isr(void)
+{}
+
+# 61
 void main(void)
 {
 setup();
-
 lcd_clear();
 lcd_init();
 cmd(0x90);
 _delay((unsigned long)((1)*(8000000/4000.0)));
-
-
 while(1)
 {
 
@@ -2669,43 +2667,26 @@ PORTA++;
 
 
 lcd_linea(1,1);
-show(PORTA);
+show(" S1   S2   S3 ");
 lcd_linea(2,1);
-show(PORTD);
-
+show(PORTA);
+}
+return;
 }
 
-}
-
-# 104
+# 95
 void setup(void)
 {
-
-ANSEL=0;
-ANSELH=0;
-ANSELbits.ANS0=1;
-ANSELbits.ANS1=1;
-
-
-TRISA=0;
-TRISB=0;
-TRISD=0;
-TRISDbits.TRISD5=0;
-TRISDbits.TRISD6=0;
-TRISDbits.TRISD7=0;
-
-
-
-PORTA=0;
-PORTB=0;
-PORTD=0;
-
-
-osc_config(8);
+ANSEL = 0;
+ANSELH = 0;
+TRISA = 0;
+TRISB = 0;
+TRISD = 0;
+TRISE = 0;
+PORTA = 0;
+PORTB = 0;
+PORTD = 0;
+PORTE = 0;
 I2C_Master_Init(100000);
-
-
-INTCONbits.GIE=0;
-INTCONbits.PEIE=0;
 }
 
