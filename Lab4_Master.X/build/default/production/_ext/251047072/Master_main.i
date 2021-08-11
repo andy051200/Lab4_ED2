@@ -2624,36 +2624,161 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 void I2C_Slave_Init(uint8_t address);
 
-# 52 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
-void setup(void);
+# 37 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.h"
+void lcd_init();
+void lcd_clear(void);
+void cmd(unsigned char a);
+void dat(unsigned char b);
+void show(unsigned char *s);
+void lcd_linea(char a, char b);
+void lcd_mov_derecha(void);
+void lcd_mov_izquierda(void);
 
-# 57
+# 49 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
+unsigned char desde_contador;
+unsigned char desde_pot;
+unsigned char desde_sensor;
+
+# 55
+void setup(void);
+void mapeos(void);
+unsigned char datos_ascii(uint8_t numero);
+uint8_t lcd_ascii();
+
+# 62
 void main(void) {
 setup();
-while(1){
+lcd_clear();
+lcd_init();
+cmd(0x90);
+_delay((unsigned long)((1)*(8000000/4000.0)));
+while(1)
+{
+
 I2C_Master_Start();
 I2C_Master_Write(0x50);
-I2C_Master_Write(PORTB);
+I2C_Master_Write(0);
 I2C_Master_Stop();
 _delay((unsigned long)((200)*(8000000/4000.0)));
 
 I2C_Master_Start();
 I2C_Master_Write(0x51);
-PORTD = I2C_Master_Read(0);
+desde_contador = I2C_Master_Read(0);
 I2C_Master_Stop();
 _delay((unsigned long)((200)*(8000000/4000.0)));
-PORTB++;
+
+
+I2C_Master_Start();
+I2C_Master_Write(0x61);
+desde_pot = I2C_Master_Read(0);
+I2C_Master_Stop();
+_delay((unsigned long)((200)*(8000000/4000.0)));
+PORTD=desde_pot;
+
+I2C_Master_Start();
+I2C_Master_Write(0x81);
+desde_sensor= I2C_Master_Read(0);
+I2C_Master_Stop();
+_delay((unsigned long)((200)*(8000000/4000.0)));
+
+
+lcd_linea(1,1);
+show(" S1   S2   S3 ");
+lcd_linea(2,1);
+show(lcd_ascii());
 }
 return;
 }
 
-# 78
+# 108
 void setup(void){
 ANSEL = 0;
 ANSELH = 0;
+TRISA = 0;
 TRISB = 0;
 TRISD = 0;
+TRISE = 0;
+PORTA = 0;
 PORTB = 0;
 PORTD = 0;
+PORTE = 0;
 I2C_Master_Init(100000);
+
+}
+
+# 127
+void mapeos(void)
+{
+
+}
+
+unsigned char datos_ascii(uint8_t numero)
+{
+switch(numero)
+{
+default:
+return 0x30;
+break;
+case(0):
+return 0x30;
+break;
+
+case(1):
+return 0x31;
+break;
+
+case(2):
+return 0x32;
+break;
+
+case(3):
+return 0x33;
+break;
+
+case(4):
+return 0x34;
+break;
+
+case(5):
+return 0x35;
+break;
+
+case(6):
+return 0x36;
+break;
+
+case(7):
+return 0x37;
+break;
+
+case(8):
+return 0x38;
+break;
+
+case(9):
+return 0x39;
+break;
+}
+}
+
+uint8_t lcd_ascii()
+{
+uint8_t random[16];
+random[0]=datos_ascii(desde_contador);
+random[1]=0x2E;
+random[2]=datos_ascii(desde_contador);
+random[3]=datos_ascii(desde_contador);
+random[4]=32;
+random[5]=datos_ascii(desde_contador);
+random[6]=0x2E;
+random[7]=datos_ascii(desde_contador);
+random[8]=datos_ascii(desde_contador);
+random[9]=32;
+random[10]=datos_ascii(desde_contador);
+random[11]=32;
+random[12]=32;
+random[13]=32;
+random[14]=32;
+random[15]=32;
+return random;
 }

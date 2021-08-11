@@ -2,15 +2,14 @@
 Archivo: mainsproject.s
 Microcontrolador: PIC16F887
 Autor: Andy Bonilla
-Compilador: pic-as (v2.30), MPLABX v5.50
+Compilador: pic-as (v2.30), MPLABX v5.45
     
 Programa: laboratorio 4
 Hardware: PIC16F887
     
-Creado: 10 de agosto de 2021    
-Descripcion: un laboratoria bien fumado tbh pero chilero
+Creado: 16 de julio de 2021    
+Descripcion: 
 ------------------------------------------------------------------------------*/
-
 // CONFIG1
 #pragma config FOSC = EXTRC_NOCLKOUT// Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
@@ -27,6 +26,9 @@ Descripcion: un laboratoria bien fumado tbh pero chilero
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
+// #pragma config statements should precede project file includes.
+// Use project enums instead of #define for ON and OFF.
+
 /*-----------------------------------------------------------------------------
  ----------------------------LIBRERIAS-----------------------------------------
  -----------------------------------------------------------------------------*/
@@ -34,18 +36,16 @@ Descripcion: un laboratoria bien fumado tbh pero chilero
 #include <pic16f887.h>
 #include "I2C.h"
 #include <xc.h>
-
-/*-----------------------------------------------------------------------------
- ------------------------DIRECTIVAS DE COMPILADOR------------------------------
- -----------------------------------------------------------------------------*/
-#define _XTAL_FREQ 8000000
-
+#include <proc/pic16f887.h>
+#include "ADC_CONFIG.h"
 /*-----------------------------------------------------------------------------
  ----------------------- VARIABLES A IMPLEMTENTAR------------------------------
  -----------------------------------------------------------------------------*/
+#define _XTAL_FREQ 8000000
 uint8_t z;
 uint8_t dato;
-
+int cuenta;
+unsigned char conversion;
 /*-----------------------------------------------------------------------------
  ------------------------ PROTOTIPOS DE FUNCIONES ------------------------------
  -----------------------------------------------------------------------------*/
@@ -56,8 +56,15 @@ void setup(void);
  -----------------------------------------------------------------------------*/
 void __interrupt() isr(void)
 {
-   if(PIR1bits.SSPIF == 1)
-   { 
+    if (ADIF)
+    {
+        conversion=ADRESH;          //valor del ADRESH en variable
+        __delay_ms(1);
+        ADCON0bits.GO = 1;          //activar bit de conversion
+        PIR1bits.ADIF=0;            //se apaga bandera de interrupcion de ADC
+    }
+    
+   if(PIR1bits.SSPIF == 1){ 
 
         SSPCONbits.CKP = 0;
        
@@ -77,7 +84,7 @@ void __interrupt() isr(void)
             PIR1bits.SSPIF = 0;         // Limpia bandera de interrupci�n recepci�n/transmisi�n SSP
             SSPCONbits.CKP = 1;         // Habilita entrada de pulsos de reloj SCL
             while(!SSPSTATbits.BF);     // Esperar a que la recepci�n se complete
-            PORTD = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepci�n
+            PORTA = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepci�n
             __delay_us(250);
             
         }
@@ -85,7 +92,7 @@ void __interrupt() isr(void)
         {
             z = SSPBUF;
             BF = 0;
-            SSPBUF = PORTB;
+            SSPBUF = conversion;     //OJOOOOO CON LA VARIABLE DE MANDAR
             SSPCONbits.CKP = 1;
             __delay_us(250);
             while(SSPSTATbits.BF);
@@ -95,16 +102,16 @@ void __interrupt() isr(void)
     }
 }
 /*-----------------------------------------------------------------------------
- ---------------------------- MAIN  Y LOOP ------------------------------------
+ ---------------------------- MAIN Y LOOP -------------------------------------
  -----------------------------------------------------------------------------*/
-void main(void) 
-{
+void main(void) {
     setup();
-    
+    __delay_ms(1);
+    ADCON0bits.GO = 1;  //se activa medición inicial
     while(1)
     {
-        PORTB = ~PORTB;
-       __delay_ms(500);
+        PORTD=conversion;
+        
     }
     return;
 }
@@ -112,17 +119,25 @@ void main(void)
  ---------------------------------- SET UP -----------------------------------
  -----------------------------------------------------------------------------*/
 void setup(void){
-    ANSEL = 0;
-    ANSELH = 0;
-    
-    TRISB = 0;
-    TRISD = 0;
-    
-    PORTB = 0;
+    //-------CONFIGURACION ENTRADAS ANALOGICAS
+    ANSELbits.ANS0 = 1;                 //AN0 para potenciometro
+    ANSELH = 0;                         //no hay entrada analogicas
+    //-------CONFIGURACION IN/OUT
+    TRISAbits.TRISA0 = 1;                          //PORTA como salida
+    TRISD = 0;                          //PortD como salida para contador 4bits
+    //-------LIMPIEZA DE PUERTOS
+    PORTA = 0;
     PORTD = 0;
-    //I2C_Slave_Init(0x50);   
+    //-------CONFIGURACION DE ADC
+    ADC_config();                       //se configura modulo adc
+    //-------CONFIGURACION DE I2C
+    I2C_Slave_Init(0x60);               //se define direccion de i2c 
+    //-------CONFIGURACION DE INTERRUPCIONES
+    INTCONbits.GIE=1;                   //se habilitan interrupciones globales
+    PIE1bits.ADIE = 1 ; //se prende interrupcion por ADC
+    PIR1bits.ADIF = 0; // se baja bandera de conversion
+    
 }
-
 /*-----------------------------------------------------------------------------
  --------------------------------- FUNCIONES ----------------------------------
  -----------------------------------------------------------------------------*/
