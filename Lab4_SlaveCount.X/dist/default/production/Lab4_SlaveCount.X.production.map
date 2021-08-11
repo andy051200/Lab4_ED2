@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Lab4_SlaveCount.X.production.sym \
   --cmf=dist/default/production\Lab4_SlaveCount.X.production.cmf -z \
-  -Q16F887 -oC:\Users\ANDYBO~1\AppData\Local\Temp\s914.2 \
+  -Q16F887 -oC:\Users\ANDYBO~1\AppData\Local\Temp\sk80.2 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Lab4_SlaveCount.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
@@ -19,7 +19,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\ANDYBO~1\AppData\Local\Temp\s914.o \
+  -pfunctab=ENTRY -k C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o \
   dist/default/production\Lab4_SlaveCount.X.production.o 
 
 Object code version is 3.11
@@ -29,7 +29,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\ANDYBO~1\AppData\Local\Temp\s914.o
+C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -276,7 +276,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 87 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
+		line 100 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -305,7 +305,7 @@ Total ram usage:        3 bytes
 
  *************** function _setup *****************
  Defined at:
-		line 101 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
+		line 114 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -365,7 +365,7 @@ Total ram usage:        1 bytes
 
  *************** function _isr *****************
  Defined at:
-		line 50 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
+		line 57 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type

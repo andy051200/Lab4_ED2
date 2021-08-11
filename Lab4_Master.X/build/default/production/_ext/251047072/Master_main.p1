@@ -1620,51 +1620,48 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Master_main.c: 64: PORTB++;
 "64
 [e ++ _PORTB -> -> 1 `i `uc ]
-[; ;Master_main.c: 65: PORTD=0;
 "65
-[e = _PORTD -> -> 0 `i `uc ]
-"66
 }
 [e :U 139 ]
 "52
 [e $U 140  ]
 [e :U 141 ]
-[; ;Master_main.c: 66: }
-[; ;Master_main.c: 67: return;
-"67
+[; ;Master_main.c: 65: }
+[; ;Master_main.c: 66: return;
+"66
 [e $UE 138  ]
-[; ;Master_main.c: 68: }
-"68
+[; ;Master_main.c: 67: }
+"67
 [e :UE 138 ]
 }
-"72
+"71
 [v _setup `(v ~T0 @X0 1 ef ]
 {
-[; ;Master_main.c: 72: void setup(void){
+[; ;Master_main.c: 71: void setup(void){
 [e :U _setup ]
 [f ]
-[; ;Master_main.c: 73: ANSEL = 0;
-"73
+[; ;Master_main.c: 72: ANSEL = 0;
+"72
 [e = _ANSEL -> -> 0 `i `uc ]
-[; ;Master_main.c: 74: ANSELH = 0;
-"74
+[; ;Master_main.c: 73: ANSELH = 0;
+"73
 [e = _ANSELH -> -> 0 `i `uc ]
-[; ;Master_main.c: 75: TRISB = 0;
-"75
+[; ;Master_main.c: 74: TRISB = 0;
+"74
 [e = _TRISB -> -> 0 `i `uc ]
-[; ;Master_main.c: 76: TRISD = 0;
-"76
+[; ;Master_main.c: 75: TRISD = 0;
+"75
 [e = _TRISD -> -> 0 `i `uc ]
-[; ;Master_main.c: 77: PORTB = 0;
-"77
+[; ;Master_main.c: 76: PORTB = 0;
+"76
 [e = _PORTB -> -> 0 `i `uc ]
-[; ;Master_main.c: 78: PORTD = 0;
-"78
+[; ;Master_main.c: 77: PORTD = 0;
+"77
 [e = _PORTD -> -> 0 `i `uc ]
-[; ;Master_main.c: 79: I2C_Master_Init(100000);
-"79
+[; ;Master_main.c: 78: I2C_Master_Init(100000);
+"78
 [e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
-[; ;Master_main.c: 80: }
-"80
+[; ;Master_main.c: 79: }
+"79
 [e :UE 142 ]
 }

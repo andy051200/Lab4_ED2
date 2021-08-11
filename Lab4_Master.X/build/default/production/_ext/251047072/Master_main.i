@@ -2645,7 +2645,6 @@ PORTD = I2C_Master_Read(0);
 I2C_Master_Stop();
 _delay((unsigned long)((200)*(8000000/4000.0)));
 PORTB++;
-PORTD=0;
 }
 return;
 }

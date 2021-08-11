@@ -7,7 +7,7 @@
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
-# 11 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
+# 15 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
 #pragma config FOSC = EXTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -22,9 +22,6 @@
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-
-
-
 
 
 
@@ -163,7 +160,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 32 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
+# 33 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
 
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\proc\\pic16f887.h" 1 3
 # 44 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\proc\\pic16f887.h" 3
@@ -2575,7 +2572,7 @@ extern volatile __bit nW __attribute__((address(0x4A2)));
 
 
 extern volatile __bit nWRITE __attribute__((address(0x4A2)));
-# 33 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
+# 34 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
 
 # 1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.h" 1
 # 18 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.h"
@@ -2689,13 +2686,8 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 
 void I2C_Slave_Init(uint8_t address);
-# 34 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
-
-
-
-
-
-
+# 35 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
+# 46 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
 uint8_t z;
 uint8_t dato;
 
@@ -2706,19 +2698,24 @@ void setup(void);
 
 
 
-void __attribute__((picinterrupt(("")))) isr(void){
-   if(PIR1bits.SSPIF == 1){
+
+void __attribute__((picinterrupt(("")))) isr(void)
+{
+   if(PIR1bits.SSPIF == 1)
+   {
 
         SSPCONbits.CKP = 0;
 
-        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL))
+        {
             z = SSPBUF;
             SSPCONbits.SSPOV = 0;
             SSPCONbits.WCOL = 0;
             SSPCONbits.CKP = 1;
         }
 
-        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW)
+        {
 
             z = SSPBUF;
 
@@ -2728,7 +2725,9 @@ void __attribute__((picinterrupt(("")))) isr(void){
             PORTD = SSPBUF;
             _delay((unsigned long)((250)*(8000000/4000000.0)));
 
-        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+        }
+        else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW)
+        {
             z = SSPBUF;
             BF = 0;
             SSPBUF = PORTB;
@@ -2743,12 +2742,12 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
 
 
-void main(void) {
+void main(void)
+{
     setup();
 
-
-
-    while(1){
+    while(1)
+    {
         PORTB = ~PORTB;
        _delay((unsigned long)((500)*(8000000/4000.0)));
     }

@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Tue Aug 10 21:29:00 2021
+                                                                                               Tue Aug 10 22:47:21 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -456,7 +456,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    442 ;;
    443 ;; *************** function _main *****************
    444 ;; Defined at:
-   445 ;;		line 87 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
+   445 ;;		line 100 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
    446 ;; Parameters:    Size  Location     Type
    447 ;;		None
    448 ;; Auto vars:     Size  Location     Type
@@ -492,19 +492,20 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    478                           
    479                           
    480                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 88:     setup();
+      +                          : 102:     setup();
    481  0078  120A  118A  2091  120A  118A  	fcall	_setup
    482  007D                     l761:
    483                           
    484                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 93:         PORTB = ~PORTB;
+      +                          : 105:     {;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_
+      +                          slaveCount.c: 106:         PORTB = ~PORTB;
    485  007D  1283               	bcf	3,5	;RP0=0, select bank0
    486  007E  1303               	bcf	3,6	;RP1=0, select bank0
    487  007F  0986               	comf	6,f	;volatile
    488  0080                     l763:
    489                           
    490                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 94:        _delay((unsigned long)((500)*(8000000/4000.0)));
+      +                          : 107:        _delay((unsigned long)((500)*(8000000/4000.0)));
    491  0080  3006               	movlw	6
    492  0081  00F6               	movwf	??_main+2
    493  0082  3013               	movlw	19
@@ -527,7 +528,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    510  0091                     __ptext1:	
    511 ;; *************** function _setup *****************
    512 ;; Defined at:
-   513 ;;		line 101 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
+   513 ;;		line 114 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
    514 ;; Parameters:    Size  Location     Type
    515 ;;		None
    516 ;; Auto vars:     Size  Location     Type
@@ -564,38 +565,38 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    547                           
    548                           
    549                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 102:     ANSEL = 0;
+      +                          : 115:     ANSEL = 0;
    550  0091  1683               	bsf	3,5	;RP0=1, select bank3
    551  0092  1703               	bsf	3,6	;RP1=1, select bank3
    552  0093  0188               	clrf	8	;volatile
    553                           
    554                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 103:     ANSELH = 0;
+      +                          : 116:     ANSELH = 0;
    555  0094  0189               	clrf	9	;volatile
    556                           
    557                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 105:     TRISB = 0;
+      +                          : 118:     TRISB = 0;
    558  0095  1683               	bsf	3,5	;RP0=1, select bank1
    559  0096  1303               	bcf	3,6	;RP1=0, select bank1
    560  0097  0186               	clrf	6	;volatile
    561                           
    562                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 106:     TRISD = 0;
+      +                          : 119:     TRISD = 0;
    563  0098  0188               	clrf	8	;volatile
    564                           
    565                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 108:     PORTB = 0;
+      +                          : 121:     PORTB = 0;
    566  0099  1283               	bcf	3,5	;RP0=0, select bank0
    567  009A  1303               	bcf	3,6	;RP1=0, select bank0
    568  009B  0186               	clrf	6	;volatile
    569                           
    570                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 109:     PORTD = 0;
+      +                          : 122:     PORTD = 0;
    571  009C  0188               	clrf	8	;volatile
    572  009D                     l719:
    573                           
    574                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 110:     I2C_Slave_Init(0x50);
+      +                          : 123:     I2C_Slave_Init(0x50);
    575  009D  3050               	movlw	80
    576  009E  120A  118A  20A4  120A  118A  	fcall	_I2C_Slave_Init
    577  00A3                     l61:
@@ -689,7 +690,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    657  0015                     __ptext3:	
    658 ;; *************** function _isr *****************
    659 ;; Defined at:
-   660 ;;		line 50 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
+   660 ;;		line 57 in file "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
    661 ;; Parameters:    Size  Location     Type
    662 ;;		None
    663 ;; Auto vars:     Size  Location     Type
@@ -722,7 +723,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    690  0015                     i1l725:
    691                           
    692                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 51:    if(PIR1bits.SSPIF == 1){
+      +                          : 59:    if(PIR1bits.SSPIF == 1)
    693  0015  1283               	bcf	3,5	;RP0=0, select bank0
    694  0016  1303               	bcf	3,6	;RP1=0, select bank0
    695  0017  1D8C               	btfss	12,3	;volatile
@@ -734,11 +735,12 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    701  001B                     i1l727:
    702                           
    703                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 53:         SSPCONbits.CKP = 0;
+      +                          : 60:    {;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_sl
+      +                          aveCount.c: 62:         SSPCONbits.CKP = 0;
    704  001B  1214               	bcf	20,4	;volatile
    705                           
    706                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 55:         if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+      +                          : 64:         if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL))
    707  001C  1B14               	btfsc	20,6	;volatile
    708  001D  281F               	goto	u4_21
    709  001E  2820               	goto	u4_20
@@ -755,7 +757,8 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    720  0024                     i1l731:
    721                           
    722                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 56:             z = SSPBUF;
+      +                          : 65:         {;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Ma
+      +                          in_slaveCount.c: 66:             z = SSPBUF;
    723  0024  0813               	movf	19,w	;volatile
    724  0025  00F0               	movwf	??_isr
    725  0026  0870               	movf	??_isr,w
@@ -763,22 +766,22 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    727  0028                     i1l733:
    728                           
    729                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 57:             SSPCONbits.SSPOV = 0;
+      +                          : 67:             SSPCONbits.SSPOV = 0;
    730  0028  1314               	bcf	20,6	;volatile
    731  0029                     i1l735:
    732                           
    733                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 58:             SSPCONbits.WCOL = 0;
+      +                          : 68:             SSPCONbits.WCOL = 0;
    734  0029  1394               	bcf	20,7	;volatile
    735  002A                     i1l737:
    736                           
    737                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 59:             SSPCONbits.CKP = 1;
+      +                          : 69:             SSPCONbits.CKP = 1;
    738  002A  1614               	bsf	20,4	;volatile
    739  002B                     i1l739:
    740                           
    741                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 62:         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+      +                          : 72:         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW)
    742  002B  1683               	bsf	3,5	;RP0=1, select bank1
    743  002C  1303               	bcf	3,6	;RP1=0, select bank1
    744  002D  1A94               	btfsc	20,5	;volatile
@@ -797,7 +800,8 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    757  0035                     i1l743:
    758                           
    759                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 64:             z = SSPBUF;
+      +                          : 73:         {;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Ma
+      +                          in_slaveCount.c: 75:             z = SSPBUF;
    760  0035  1283               	bcf	3,5	;RP0=0, select bank0
    761  0036  1303               	bcf	3,6	;RP1=0, select bank0
    762  0037  0813               	movf	19,w	;volatile
@@ -807,16 +811,16 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    766  003B                     i1l745:
    767                           
    768                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 66:             PIR1bits.SSPIF = 0;
+      +                          : 77:             PIR1bits.SSPIF = 0;
    769  003B  118C               	bcf	12,3	;volatile
    770  003C                     i1l747:
    771                           
    772                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 67:             SSPCONbits.CKP = 1;
+      +                          : 78:             SSPCONbits.CKP = 1;
    773  003C  1614               	bsf	20,4	;volatile
    774  003D                     i1l42:	
    775                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 68:             while(!SSPSTATbits.BF);
+      +                          : 79:             while(!SSPSTATbits.BF);
    776                           
    777  003D  1683               	bsf	3,5	;RP0=1, select bank1
    778  003E  1303               	bcf	3,6	;RP1=0, select bank1
@@ -829,14 +833,14 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    785  0043                     i1l749:
    786                           
    787                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 69:             PORTD = SSPBUF;
+      +                          : 80:             PORTD = SSPBUF;
    788  0043  1283               	bcf	3,5	;RP0=0, select bank0
    789  0044  1303               	bcf	3,6	;RP1=0, select bank0
    790  0045  0813               	movf	19,w	;volatile
    791  0046  0088               	movwf	8	;volatile
    792                           
    793                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 70:             _delay((unsigned long)((250)*(8000000/4000000.0)));
+      +                          : 81:             _delay((unsigned long)((250)*(8000000/4000000.0)));
    794  0047  30A6               	movlw	166
    795  0048  00F0               	movwf	??_isr
    796  0049                     u15_27:
@@ -845,141 +849,145 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    799  004B  0000               	nop
    800                           
    801                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 72:         }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+      +                          : 83:         }
    802  004C  286E               	goto	i1l45
-   803  004D                     i1l41:
-   804  004D  1A94               	btfsc	20,5	;volatile
-   805  004E  2850               	goto	u9_21
-   806  004F  2851               	goto	u9_20
-   807  0050                     u9_21:
-   808  0050  286E               	goto	i1l45
-   809  0051                     u9_20:
-   810  0051                     i1l751:
-   811  0051  1D14               	btfss	20,2	;volatile
-   812  0052  2854               	goto	u10_21
-   813  0053  2855               	goto	u10_20
-   814  0054                     u10_21:
-   815  0054  286E               	goto	i1l45
-   816  0055                     u10_20:
-   817  0055                     i1l753:
-   818                           
-   819                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 73:             z = SSPBUF;
-   820  0055  1283               	bcf	3,5	;RP0=0, select bank0
-   821  0056  1303               	bcf	3,6	;RP1=0, select bank0
-   822  0057  0813               	movf	19,w	;volatile
-   823  0058  00F0               	movwf	??_isr
-   824  0059  0870               	movf	??_isr,w
-   825  005A  00F8               	movwf	_z
-   826  005B                     i1l755:
-   827                           
-   828                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 74:             BF = 0;
-   829  005B  1683               	bsf	3,5	;RP0=1, select bank1
-   830  005C  1303               	bcf	3,6	;RP1=0, select bank1
-   831  005D  1014               	bcf	20,0	;volatile
-   832                           
-   833                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 75:             SSPBUF = PORTB;
-   834  005E  1283               	bcf	3,5	;RP0=0, select bank0
-   835  005F  1303               	bcf	3,6	;RP1=0, select bank0
-   836  0060  0806               	movf	6,w	;volatile
-   837  0061  0093               	movwf	19	;volatile
-   838  0062                     i1l757:
-   839                           
-   840                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 76:             SSPCONbits.CKP = 1;
-   841  0062  1614               	bsf	20,4	;volatile
-   842                           
-   843                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 77:             _delay((unsigned long)((250)*(8000000/4000000.0)));
-   844  0063  30A6               	movlw	166
-   845  0064  00F0               	movwf	??_isr
-   846  0065                     u16_27:
-   847  0065  0BF0               	decfsz	??_isr,f
-   848  0066  2865               	goto	u16_27
-   849  0067  0000               	nop
-   850  0068                     i1l47:	
-   851                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 78:             while(SSPSTATbits.BF);
-   852                           
-   853  0068  1683               	bsf	3,5	;RP0=1, select bank1
-   854  0069  1303               	bcf	3,6	;RP1=0, select bank1
-   855  006A  1814               	btfsc	20,0	;volatile
-   856  006B  286D               	goto	u11_21
-   857  006C  286E               	goto	u11_20
-   858  006D                     u11_21:
-   859  006D  2868               	goto	i1l47
-   860  006E                     u11_20:
-   861  006E                     i1l45:
-   862                           
-   863                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-      +                          : 81:         PIR1bits.SSPIF = 0;
-   864  006E  1283               	bcf	3,5	;RP0=0, select bank0
-   865  006F  1303               	bcf	3,6	;RP1=0, select bank0
-   866  0070  118C               	bcf	12,3	;volatile
-   867  0071                     i1l50:
-   868  0071  0872               	movf	??_isr+2,w
-   869  0072  008A               	movwf	10
-   870  0073  0E71               	swapf	??_isr+1,w
-   871  0074  0083               	movwf	3
-   872  0075  0EFE               	swapf	btemp,f
-   873  0076  0E7E               	swapf	btemp,w
-   874  0077  0009               	retfie
-   875  0078                     __end_of_isr:
-   876  007E                     btemp	set	126	;btemp
-   877  007E                     wtemp0	set	126
-   878                           
-   879                           	psect	intentry
-   880  0004                     __pintentry:	
-   881                           ;incstack = 0
-   882                           ; Regs used in _isr: [wreg]
-   883                           
-   884  0004                     interrupt_function:
-   885  007E                     saved_w	set	btemp
-   886  0004  00FE               	movwf	btemp
-   887  0005  0E03               	swapf	3,w
-   888  0006  00F1               	movwf	??_isr+1
-   889  0007  080A               	movf	10,w
-   890  0008  00F2               	movwf	??_isr+2
-   891  0009  120A  118A  2815   	ljmp	_isr
-   892                           
-   893                           	psect	config
+   803  004D                     i1l41:	
+   804                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+      +                          : 84:         else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW)
+   805                           
+   806  004D  1A94               	btfsc	20,5	;volatile
+   807  004E  2850               	goto	u9_21
+   808  004F  2851               	goto	u9_20
+   809  0050                     u9_21:
+   810  0050  286E               	goto	i1l45
+   811  0051                     u9_20:
+   812  0051                     i1l751:
+   813  0051  1D14               	btfss	20,2	;volatile
+   814  0052  2854               	goto	u10_21
+   815  0053  2855               	goto	u10_20
+   816  0054                     u10_21:
+   817  0054  286E               	goto	i1l45
+   818  0055                     u10_20:
+   819  0055                     i1l753:
+   820                           
+   821                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+      +                          : 85:         {;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Ma
+      +                          in_slaveCount.c: 86:             z = SSPBUF;
+   822  0055  1283               	bcf	3,5	;RP0=0, select bank0
+   823  0056  1303               	bcf	3,6	;RP1=0, select bank0
+   824  0057  0813               	movf	19,w	;volatile
+   825  0058  00F0               	movwf	??_isr
+   826  0059  0870               	movf	??_isr,w
+   827  005A  00F8               	movwf	_z
+   828  005B                     i1l755:
+   829                           
+   830                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+      +                          : 87:             BF = 0;
+   831  005B  1683               	bsf	3,5	;RP0=1, select bank1
+   832  005C  1303               	bcf	3,6	;RP1=0, select bank1
+   833  005D  1014               	bcf	20,0	;volatile
+   834                           
+   835                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+      +                          : 88:             SSPBUF = PORTB;
+   836  005E  1283               	bcf	3,5	;RP0=0, select bank0
+   837  005F  1303               	bcf	3,6	;RP1=0, select bank0
+   838  0060  0806               	movf	6,w	;volatile
+   839  0061  0093               	movwf	19	;volatile
+   840  0062                     i1l757:
+   841                           
+   842                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+      +                          : 89:             SSPCONbits.CKP = 1;
+   843  0062  1614               	bsf	20,4	;volatile
+   844                           
+   845                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+      +                          : 90:             _delay((unsigned long)((250)*(8000000/4000000.0)));
+   846  0063  30A6               	movlw	166
+   847  0064  00F0               	movwf	??_isr
+   848  0065                     u16_27:
+   849  0065  0BF0               	decfsz	??_isr,f
+   850  0066  2865               	goto	u16_27
+   851  0067  0000               	nop
+   852  0068                     i1l47:	
+   853                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+      +                          : 91:             while(SSPSTATbits.BF);
+   854                           
+   855  0068  1683               	bsf	3,5	;RP0=1, select bank1
+   856  0069  1303               	bcf	3,6	;RP1=0, select bank1
+   857  006A  1814               	btfsc	20,0	;volatile
+   858  006B  286D               	goto	u11_21
+   859  006C  286E               	goto	u11_20
+   860  006D                     u11_21:
+   861  006D  2868               	goto	i1l47
+   862  006E                     u11_20:
+   863  006E                     i1l45:
+   864                           
+   865                           ;C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+      +                          : 94:         PIR1bits.SSPIF = 0;
+   866  006E  1283               	bcf	3,5	;RP0=0, select bank0
+   867  006F  1303               	bcf	3,6	;RP1=0, select bank0
+   868  0070  118C               	bcf	12,3	;volatile
+   869  0071                     i1l50:
+   870  0071  0872               	movf	??_isr+2,w
+   871  0072  008A               	movwf	10
+   872  0073  0E71               	swapf	??_isr+1,w
+   873  0074  0083               	movwf	3
+   874  0075  0EFE               	swapf	btemp,f
+   875  0076  0E7E               	swapf	btemp,w
+   876  0077  0009               	retfie
+   877  0078                     __end_of_isr:
+   878  007E                     btemp	set	126	;btemp
+   879  007E                     wtemp0	set	126
+   880                           
+   881                           	psect	intentry
+   882  0004                     __pintentry:	
+   883                           ;incstack = 0
+   884                           ; Regs used in _isr: [wreg]
+   885                           
+   886  0004                     interrupt_function:
+   887  007E                     saved_w	set	btemp
+   888  0004  00FE               	movwf	btemp
+   889  0005  0E03               	swapf	3,w
+   890  0006  00F1               	movwf	??_isr+1
+   891  0007  080A               	movf	10,w
+   892  0008  00F2               	movwf	??_isr+2
+   893  0009  120A  118A  2815   	ljmp	_isr
    894                           
-   895                           ;Config register CONFIG1 @ 0x2007
-   896                           ;	Oscillator Selection bits
-   897                           ;	FOSC = EXTRC_NOCLKOUT, RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7
+   895                           	psect	config
+   896                           
+   897                           ;Config register CONFIG1 @ 0x2007
+   898                           ;	Oscillator Selection bits
+   899                           ;	FOSC = EXTRC_NOCLKOUT, RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7
       +                          /OSC1/CLKIN
-   898                           ;	Watchdog Timer Enable bit
-   899                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
-   900                           ;	Power-up Timer Enable bit
-   901                           ;	PWRTE = OFF, PWRT disabled
-   902                           ;	RE3/MCLR pin function select bit
-   903                           ;	MCLRE = OFF, RE3/MCLR pin function is digital input, MCLR internally tied to VDD
-   904                           ;	Code Protection bit
-   905                           ;	CP = OFF, Program memory code protection is disabled
-   906                           ;	Data Code Protection bit
-   907                           ;	CPD = OFF, Data memory code protection is disabled
-   908                           ;	Brown Out Reset Selection bits
-   909                           ;	BOREN = OFF, BOR disabled
-   910                           ;	Internal External Switchover bit
-   911                           ;	IESO = OFF, Internal/External Switchover mode is disabled
-   912                           ;	Fail-Safe Clock Monitor Enabled bit
-   913                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
-   914                           ;	Low Voltage Programming Enable bit
-   915                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
-   916                           ;	In-Circuit Debugger Mode bit
-   917                           ;	DEBUG = 0x1, unprogrammed default
-   918  2007                     	org	8199
-   919  2007  20D6               	dw	8406
-   920                           
-   921                           ;Config register CONFIG2 @ 0x2008
-   922                           ;	Brown-out Reset Selection bit
-   923                           ;	BOR4V = BOR40V, Brown-out Reset set to 4.0V
-   924                           ;	Flash Program Memory Self Write Enable bits
-   925                           ;	WRT = OFF, Write protection off
-   926  2008                     	org	8200
-   927  2008  3FFF               	dw	16383
+   900                           ;	Watchdog Timer Enable bit
+   901                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+   902                           ;	Power-up Timer Enable bit
+   903                           ;	PWRTE = OFF, PWRT disabled
+   904                           ;	RE3/MCLR pin function select bit
+   905                           ;	MCLRE = OFF, RE3/MCLR pin function is digital input, MCLR internally tied to VDD
+   906                           ;	Code Protection bit
+   907                           ;	CP = OFF, Program memory code protection is disabled
+   908                           ;	Data Code Protection bit
+   909                           ;	CPD = OFF, Data memory code protection is disabled
+   910                           ;	Brown Out Reset Selection bits
+   911                           ;	BOREN = OFF, BOR disabled
+   912                           ;	Internal External Switchover bit
+   913                           ;	IESO = OFF, Internal/External Switchover mode is disabled
+   914                           ;	Fail-Safe Clock Monitor Enabled bit
+   915                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
+   916                           ;	Low Voltage Programming Enable bit
+   917                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
+   918                           ;	In-Circuit Debugger Mode bit
+   919                           ;	DEBUG = 0x1, unprogrammed default
+   920  2007                     	org	8199
+   921  2007  20D6               	dw	8406
+   922                           
+   923                           ;Config register CONFIG2 @ 0x2008
+   924                           ;	Brown-out Reset Selection bit
+   925                           ;	BOR4V = BOR40V, Brown-out Reset set to 4.0V
+   926                           ;	Flash Program Memory Self Write Enable bits
+   927                           ;	WRT = OFF, Write protection off
+   928  2008                     	org	8200
+   929  2008  3FFF               	dw	16383
 
 Data Sizes:
     Strings     0
@@ -1103,7 +1111,7 @@ DATA                 0      0       9      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Tue Aug 10 21:29:00 2021
+Symbol Table                                                                                   Tue Aug 10 22:47:21 2021
 
                       _z 0078              _SSPSTATbits 0094                       _BF 04A0  
                      l61 00A3                      l119 00B5                      l711 00A5  

@@ -61,8 +61,7 @@ void main(void) {
         PORTD = I2C_Master_Read(0);
         I2C_Master_Stop();
         __delay_ms(200);
-        PORTB++;  
-        PORTD=0;
+        PORTB++;   
     }
     return;
 }
