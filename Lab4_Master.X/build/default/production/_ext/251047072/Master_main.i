@@ -2,8 +2,8 @@
 # 1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
 
 
-# 11
-#pragma config FOSC = INTRC_NOCLKOUT
+# 15
+#pragma config FOSC = EXTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2624,12 +2624,10 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 void I2C_Slave_Init(uint8_t address);
 
-# 45 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
+# 52 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
 void setup(void);
 
-
-
-
+# 57
 void main(void) {
 setup();
 while(1){
@@ -2649,8 +2647,7 @@ PORTB++;
 return;
 }
 
-
-
+# 78
 void setup(void){
 ANSEL = 0;
 ANSELH = 0;
@@ -2658,7 +2655,5 @@ TRISB = 0;
 TRISD = 0;
 PORTB = 0;
 PORTD = 0;
-OSCCONbits.IRCF=0b111;
-OSCCONbits.SCS=1;
 I2C_Master_Init(100000);
 }

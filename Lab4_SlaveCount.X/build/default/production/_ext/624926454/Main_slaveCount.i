@@ -7,8 +7,8 @@
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
-# 11 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
-#pragma config FOSC = INTRC_NOCLKOUT
+# 14 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c"
+#pragma config FOSC = EXTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -163,7 +163,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 32 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
+# 35 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
 
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\proc\\pic16f887.h" 1 3
 # 44 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\proc\\pic16f887.h" 3
@@ -2575,7 +2575,7 @@ extern volatile __bit nW __attribute__((address(0x4A2)));
 
 
 extern volatile __bit nWRITE __attribute__((address(0x4A2)));
-# 33 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
+# 36 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
 
 # 1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.h" 1
 # 18 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.h"
@@ -2689,7 +2689,8 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 
 void I2C_Slave_Init(uint8_t address);
-# 34 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
+# 37 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c" 2
+
 
 
 
@@ -2698,40 +2699,67 @@ void I2C_Slave_Init(uint8_t address);
 
 uint8_t z;
 uint8_t dato;
-
+unsigned char antirrebote1;
+unsigned char antirrebote2;
+unsigned char cuenta;
 
 
 
 void setup(void);
+void botones(void);
 
 
 
-void __attribute__((picinterrupt(("")))) isr(void){
+void __attribute__((picinterrupt(("")))) isr(void)
+{
+    if (INTCONbits.RBIF)
+    {
+        switch(PORTB)
+        {
+            case(0b11111110):
+                antirrebote1=1;
+                break;
+
+            case(0b11111101):
+                antirrebote2=1;
+                break;
+            default:
+                antirrebote1=0;
+                antirrebote2=0;
+                break;
+        }
+        INTCONbits.RBIF=0;
+    }
+
    if(PIR1bits.SSPIF == 1){
 
         SSPCONbits.CKP = 0;
 
-        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL))
+        {
             z = SSPBUF;
             SSPCONbits.SSPOV = 0;
             SSPCONbits.WCOL = 0;
             SSPCONbits.CKP = 1;
         }
 
-        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW)
+        {
 
             z = SSPBUF;
 
             PIR1bits.SSPIF = 0;
             SSPCONbits.CKP = 1;
             while(!SSPSTATbits.BF);
-            PORTD = SSPBUF;
+            PORTA = SSPBUF;
             _delay((unsigned long)((250)*(8000000/4000000.0)));
 
-        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+        }
+        else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW)
+        {
             z = SSPBUF;
             BF = 0;
-            SSPBUF = PORTB;
+            SSPBUF = cuenta;
             SSPCONbits.CKP = 1;
             _delay((unsigned long)((250)*(8000000/4000000.0)));
             while(SSPSTATbits.BF);
@@ -2746,11 +2774,10 @@ void __attribute__((picinterrupt(("")))) isr(void){
 void main(void) {
     setup();
 
+    while(1)
+    {
+        botones();
 
-
-    while(1){
-        PORTB = ~PORTB;
-       _delay((unsigned long)((500)*(8000000/4000.0)));
     }
     return;
 }
@@ -2758,16 +2785,52 @@ void main(void) {
 
 
 void setup(void){
+
     ANSEL = 0;
     ANSELH = 0;
 
-    TRISB = 0;
+    TRISA = 0;
+    TRISBbits.TRISB0=1;
+    TRISBbits.TRISB1=1;
     TRISD = 0;
 
+    PORTA = 0;
     PORTB = 0;
     PORTD = 0;
-    OSCCONbits.IRCF=0b111;
-    OSCCONbits.SCS=1;
+
+    OPTION_REGbits.nRBPU=0;
+    WPUBbits.WPUB0=1;
+    WPUBbits.WPUB1=1;
 
     I2C_Slave_Init(0x50);
+
+    INTCONbits.GIE=1;
+    INTCONbits.RBIE=1;
+    INTCONbits.RBIF=0;
+    IOCBbits.IOCB0=1;
+    IOCBbits.IOCB1=1;
+}
+
+
+
+void botones(void)
+{
+
+    if (antirrebote1==1 && PORTBbits.RB0==0)
+    {
+        cuenta++;
+        PORTD=cuenta;
+        antirrebote1=0;
+    }
+
+    if (antirrebote2==1 && PORTBbits.RB1==0)
+    {
+        cuenta--;
+        PORTD=cuenta;
+        antirrebote2=0;
+    }
+    if (cuenta >=15 && cuenta <=255)
+        cuenta=0;
+
+    return;
 }

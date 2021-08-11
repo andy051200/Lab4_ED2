@@ -1,14 +1,17 @@
-/*
- * File:   main.c
- * Author: Pablo
- * Ejemplo de uso de I2C Esclavo
- * Created on 17 de febrero de 2020, 10:32 AM
- */
-//*****************************************************************************
-// Palabra de configuraci�n
-//*****************************************************************************
+/*------------------------------------------------------------------------------
+Archivo: mainsproject.s
+Microcontrolador: PIC16F887
+Autor: Andy Bonilla
+Compilador: pic-as (v2.30), MPLABX v5.45
+    
+Programa: laboratorio 4
+Hardware: PIC16F887
+    
+Creado: 16 de julio de 2021    
+Descripcion: 
+------------------------------------------------------------------------------*/
 // CONFIG1
-#pragma config FOSC = INTRC_NOCLKOUT   //configuracion de oscilador interno
+#pragma config FOSC = EXTRC_NOCLKOUT// Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -26,53 +29,81 @@
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
 
-//*****************************************************************************
-// Definici�n e importaci�n de librer�as
-//*****************************************************************************
+/*-----------------------------------------------------------------------------
+ ----------------------------LIBRERIAS-----------------------------------------
+ -----------------------------------------------------------------------------*/
 #include <stdint.h>
 #include <pic16f887.h>
 #include "I2C.h"
 #include <xc.h>
-//*****************************************************************************
-// Definici�n de variables
-//*****************************************************************************
+#include <proc/pic16f887.h>
+/*-----------------------------------------------------------------------------
+ ----------------------- VARIABLES A IMPLEMTENTAR------------------------------
+ -----------------------------------------------------------------------------*/
 #define _XTAL_FREQ 8000000
 uint8_t z;
 uint8_t dato;
-//*****************************************************************************
-// Definici�n de funciones para que se puedan colocar despu�s del main de lo 
-// contrario hay que colocarlos todas las funciones antes del main
-//*****************************************************************************
+unsigned char antirrebote1; //control de suma
+unsigned char antirrebote2; //control de resta
+unsigned char cuenta;
+/*-----------------------------------------------------------------------------
+ ------------------------ PROTOTIPOS DE FUNCIONES ------------------------------
+ -----------------------------------------------------------------------------*/
 void setup(void);
-//*****************************************************************************
-// C�digo de Interrupci�n 
-//*****************************************************************************
-void __interrupt() isr(void){
+void botones(void);
+/*-----------------------------------------------------------------------------
+ ---------------------------- INTERRUPCIONES ----------------------------------
+ -----------------------------------------------------------------------------*/
+void __interrupt() isr(void)
+{
+    if (INTCONbits.RBIF)
+    {
+        switch(PORTB)
+        {
+            case(0b11111110):
+                antirrebote1=1;
+                break;
+                
+            case(0b11111101):
+                antirrebote2=1;
+                break;
+            default:
+                antirrebote1=0;
+                antirrebote2=0;
+                break;
+        }
+        INTCONbits.RBIF=0;
+    }
+    
    if(PIR1bits.SSPIF == 1){ 
 
         SSPCONbits.CKP = 0;
        
-        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL))
+        {
             z = SSPBUF;                 // Read the previous value to clear the buffer
             SSPCONbits.SSPOV = 0;       // Clear the overflow flag
             SSPCONbits.WCOL = 0;        // Clear the collision bit
             SSPCONbits.CKP = 1;         // Enables SCL (Clock)
         }
 
-        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) 
+        {
             //__delay_us(7);
             z = SSPBUF;                 // Lectura del SSBUF para limpiar el buffer y la bandera BF
             //__delay_us(2);
             PIR1bits.SSPIF = 0;         // Limpia bandera de interrupci�n recepci�n/transmisi�n SSP
             SSPCONbits.CKP = 1;         // Habilita entrada de pulsos de reloj SCL
             while(!SSPSTATbits.BF);     // Esperar a que la recepci�n se complete
-            PORTD = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepci�n
+            PORTA = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepci�n
             __delay_us(250);
             
-        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+        }
+        else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW)
+        {
             z = SSPBUF;
             BF = 0;
-            SSPBUF = PORTB;
+            SSPBUF = cuenta;
             SSPCONbits.CKP = 1;
             __delay_us(250);
             while(SSPSTATbits.BF);
@@ -81,34 +112,69 @@ void __interrupt() isr(void){
         PIR1bits.SSPIF = 0;    
     }
 }
-//*****************************************************************************
-// Main
-//*****************************************************************************
+/*-----------------------------------------------------------------------------
+ ---------------------------- MAIN Y LOOP -------------------------------------
+ -----------------------------------------------------------------------------*/
 void main(void) {
     setup();
-    //*************************************************************************
-    // Loop infinito
-    //*************************************************************************
-    while(1){
-        PORTB = ~PORTB;
-       __delay_ms(500);
+    
+    while(1)
+    {
+        botones();
+        
     }
     return;
 }
-//*****************************************************************************
-// Funci�n de Inicializaci�n
-//*****************************************************************************
+/*-----------------------------------------------------------------------------
+ ---------------------------------- SET UP -----------------------------------
+ -----------------------------------------------------------------------------*/
 void setup(void){
-    ANSEL = 0;
-    ANSELH = 0;
-    
-    TRISB = 0;
-    TRISD = 0;
-    
+    //-------CONFIGURACION ENTRADAS ANALOGICAS
+    ANSEL = 0;                          //no hay entrada analogicas
+    ANSELH = 0;                         //no hay entrada analogicas
+    //-------CONFIGURACION IN/OUT
+    TRISA = 0;                          //PORTA como salida
+    TRISBbits.TRISB0=1;                 //RA0 como entrada, boton suma
+    TRISBbits.TRISB1=1;                 //RA1 como entrada, boton resta
+    TRISD = 0;                          //PortD como salida para contador 4bits
+    //-------LIMPIEZA DE PUERTOS
+    PORTA = 0;
     PORTB = 0;
     PORTD = 0;
-    OSCCONbits.IRCF=0b111;      //Freq a 8MHz
-    OSCCONbits.SCS=1;           //Oscilador interno
+    //-------CONFIGURACION DE WEAK PULL UPS
+    OPTION_REGbits.nRBPU=0;             //se activan WPUB
+    WPUBbits.WPUB0=1;                   //RB0, boton suma
+    WPUBbits.WPUB1=1;                   //RB1, boton resta
+    //-------CONFIGURACION DE I2C
+    I2C_Slave_Init(0x50);               //se define direccion de i2c 
+    //-------CONFIGURACION DE INTERRUPCIONES
+    INTCONbits.GIE=1;                   //se habilitan interrupciones globales
+    INTCONbits.RBIE=1;                  //se  habilita IntOnChange B
+    INTCONbits.RBIF=0;                  //se  apaga bandera IntOnChange B
+    IOCBbits.IOCB0=1;                   //habilita IOCB RB0
+    IOCBbits.IOCB1=1;                   //habilita IOCB RB1
+}
+/*-----------------------------------------------------------------------------
+ --------------------------------- FUNCIONES ----------------------------------
+ -----------------------------------------------------------------------------*/
+void botones(void)
+{
+    //-----antirrebote boton SUMA
+    if (antirrebote1==1 && PORTBbits.RB0==0)
+    {
+        cuenta++;
+        PORTD=cuenta;
+        antirrebote1=0;
+    }
+    //-----antirrebote boton RESTA
+    if (antirrebote2==1 && PORTBbits.RB1==0)
+    {
+        cuenta--;
+        PORTD=cuenta;
+        antirrebote2=0;
+    }
+    if (cuenta >=15 && cuenta <=255)
+        cuenta=0;
     
-    I2C_Slave_Init(0x50);   
+    return;
 }

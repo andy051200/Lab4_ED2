@@ -1,14 +1,18 @@
-/*
- * File:   main.c
- * Author: Pablo
- * Ejemplo de uso de I2C Master
- * Created on 17 de febrero de 2020, 10:32 AM
- */
-//*****************************************************************************
-// Palabra de configuraci�n
-//*****************************************************************************
+/*------------------------------------------------------------------------------
+Archivo: mainsproject.s
+Microcontrolador: PIC16F887
+Autor: Andy Bonilla
+Compilador: pic-as (v2.30), MPLABX v5.45
+    
+Programa: laboratorio 1
+Hardware: PIC16F887
+    
+Creado: 16 de julio de 2021    
+Descripcion: 
+------------------------------------------------------------------------------*/
+
 // CONFIG1
-#pragma config FOSC = INTRC_NOCLKOUT   //configuracion de oscilador interno
+#pragma config FOSC = EXTRC_NOCLKOUT// Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -26,27 +30,30 @@
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
 
-//*****************************************************************************
-// Definici�n e importaci�n de librer�as
-//*****************************************************************************
+/*-----------------------------------------------------------------------------
+ ----------------------------LIBRERIAS-----------------------------------------
+ -----------------------------------------------------------------------------*/
 #include <stdint.h>
 #include <pic16f887.h>
 #include "I2C.h"
 #include <xc.h>
-//*****************************************************************************
-// Definici�n de variables
-//*****************************************************************************
-#define _XTAL_FREQ 8000000
 
-//*****************************************************************************
-// Definici�n de funciones para que se puedan colocar despu�s del main de lo 
-// contrario hay que colocarlos todas las funciones antes del main
-//*****************************************************************************
+/*-----------------------------------------------------------------------------
+ ----------------------- VARIABLES A IMPLEMTENTAR------------------------------
+ -----------------------------------------------------------------------------*/
+
+//-------DIRECTIVAS DEL COMPILADOR
+#define _XTAL_FREQ 8000000
+//-------VARIABLES DE PROGRAMA
+
+/*-----------------------------------------------------------------------------
+ ------------------------ PROTOTIPOS DE FUNCIONES ------------------------------
+ -----------------------------------------------------------------------------*/
 void setup(void);
 
-//*****************************************************************************
-// Main
-//*****************************************************************************
+/*-----------------------------------------------------------------------------
+ ----------------------------- MAIN LOOP --------------------------------------
+ -----------------------------------------------------------------------------*/
 void main(void) {
     setup();
     while(1){
@@ -65,9 +72,9 @@ void main(void) {
     }
     return;
 }
-//*****************************************************************************
-// Funci�n de Inicializaci�n
-//*****************************************************************************
+/*-----------------------------------------------------------------------------
+ ---------------------------------- SET UP -----------------------------------
+ -----------------------------------------------------------------------------*/
 void setup(void){
     ANSEL = 0;
     ANSELH = 0;
@@ -75,7 +82,5 @@ void setup(void){
     TRISD = 0;
     PORTB = 0;
     PORTD = 0;
-    OSCCONbits.IRCF=0b111;      //Freq a 8MHz
-    OSCCONbits.SCS=1;           //Oscilador interno
     I2C_Master_Init(100000);        // Inicializar Comuncaci�n I2C
 }
