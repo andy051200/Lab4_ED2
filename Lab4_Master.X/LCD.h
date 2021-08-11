@@ -17,15 +17,15 @@
 
 
 #ifndef rs
-#define rs  RD5
+#define rs  RE0
 #endif
 
 #ifndef rw
-#define rw  RD6
+#define rw  RE1
 #endif
 
 #ifndef en
-#define en  RD7
+#define en  RE2
 #endif
 
 #include <xc.h> // include processor files - each processor file is guarded.  

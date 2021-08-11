@@ -1,16 +1,12 @@
-/*------------------------------------------------------------------------------
-Archivo: mainsproject.s
-Microcontrolador: PIC16F887
-Autor: Andy Bonilla
-Compilador: pic-as (v2.30), MPLABX v5.45
-    
-Programa: laboratorio 4
-Hardware: PIC16F887
-    
-Creado: 8 de agosto de 2021    
-Descripcion: un laboratoria bien fumado tbh pero chilero
-------------------------------------------------------------------------------*/
-
+/*
+ * File:   main.c
+ * Author: Pablo
+ * Ejemplo de uso de I2C Master
+ * Created on 17 de febrero de 2020, 10:32 AM
+ */
+//*****************************************************************************
+// Palabra de configuraci�n
+//*****************************************************************************
 // CONFIG1
 #pragma config FOSC = EXTRC_NOCLKOUT// Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
@@ -27,88 +23,58 @@ Descripcion: un laboratoria bien fumado tbh pero chilero
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
-/*-----------------------------------------------------------------------------
- ----------------------------LIBRERIAS-----------------------------------------
- -----------------------------------------------------------------------------*/
+// #pragma config statements should precede project file includes.
+// Use project enums instead of #define for ON and OFF.
+
+//*****************************************************************************
+// Definici�n e importaci�n de librer�as
+//*****************************************************************************
 #include <stdint.h>
 #include <pic16f887.h>
 #include "I2C.h"
 #include <xc.h>
-#include "LCD.h"
-/*-----------------------------------------------------------------------------
- ------------------------DIRECTIVAS DE COMPILADOR------------------------------
- -----------------------------------------------------------------------------*/
+//*****************************************************************************
+// Definici�n de variables
+//*****************************************************************************
 #define _XTAL_FREQ 8000000
 
-/*-----------------------------------------------------------------------------
- ----------------------- VARIABLES A IMPLEMTENTAR------------------------------
- -----------------------------------------------------------------------------*/
-unsigned char de_asistente1;
-/*-----------------------------------------------------------------------------
- ------------------------ PROTOTIPOS DE FUNCIONES ------------------------------
- -----------------------------------------------------------------------------*/
+//*****************************************************************************
+// Definici�n de funciones para que se puedan colocar despu�s del main de lo 
+// contrario hay que colocarlos todas las funciones antes del main
+//*****************************************************************************
 void setup(void);
 
-/*-----------------------------------------------------------------------------
- ---------------------------- INTERRUPCIONES ----------------------------------
- -----------------------------------------------------------------------------*/
-void __interrupt() isr(void)
-{}
-
-/*-----------------------------------------------------------------------------
- ---------------------------- MAIN  Y LOOP ------------------------------------
- -----------------------------------------------------------------------------*/
-void main(void) 
-{
+//*****************************************************************************
+// Main
+//*****************************************************************************
+void main(void) {
     setup();
-    lcd_clear();        //se limpia la lcd inicialmente
-    lcd_init();         //invoco la funcion de inicializacion de la lcd
-	cmd(0x90);          //invocao la funcion de configurcion de comandos lc
-    __delay_ms(1);
-    
-    while(1)
-    {
-        //------llamado de funciones para comunicacion i2c
-        I2C_Master_Start();             //inicializacion de comunicacion
-        I2C_Master_Write(0x50);         //se pone direccion y escrutura
-        I2C_Master_Write(0);        //se manda la informacion
-        I2C_Master_Stop();              //se para la comunicacion
-        __delay_ms(10);
+    while(1){
+        I2C_Master_Start();
+        I2C_Master_Write(0x50);
+        I2C_Master_Write(PORTB);
+        I2C_Master_Stop();
+        __delay_ms(200);
        
-        I2C_Master_Start();             //inicializacion de comunicacion
-        I2C_Master_Write(0x51);         //se pone direccion y lectura
-        PORTA = I2C_Master_Read(0);     //se recibe la informacion
-        I2C_Master_Stop();              //se para la comunicacion
-        __delay_ms(10);
-        //PORTE++;   
-        
-        //PORTA=de_asistente1;
-        //------llamado de funciones para desplegar valores en lcd
-        lcd_linea(1,1);             //selecciono la linea 1 para escribir
-        show(de_asistente1);//mensaje a enviar linea 1
-        lcd_linea(2,1);             //selecciono la linea 2 para escibrir
-        show(PORTA);                //mensaje a enviar linea 2
-        
+        I2C_Master_Start();
+        I2C_Master_Write(0x51);
+        PORTD = I2C_Master_Read(0);
+        I2C_Master_Stop();
+        __delay_ms(200);
+        PORTB++;  
+        PORTD=0;
     }
     return;
 }
-/*-----------------------------------------------------------------------------
- ---------------------------------- SET UP -----------------------------------
- -----------------------------------------------------------------------------*/
-void setup(void)
-{
+//*****************************************************************************
+// Funci�n de Inicializaci�n
+//*****************************************************************************
+void setup(void){
     ANSEL = 0;
     ANSELH = 0;
-    TRISA = 0;
     TRISB = 0;
     TRISD = 0;
-    TRISE = 0;
-    PORTA = 0;
     PORTB = 0;
     PORTD = 0;
-    PORTE = 0;
     I2C_Master_Init(100000);        // Inicializar Comuncaci�n I2C
 }
-/*-----------------------------------------------------------------------------
- --------------------------------- FUNCIONES ----------------------------------
- -----------------------------------------------------------------------------*/

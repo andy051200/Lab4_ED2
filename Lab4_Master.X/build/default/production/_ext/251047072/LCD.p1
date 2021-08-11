@@ -3,12 +3,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _cmd `(v ~T0 @X0 0 ef1`uc ]
 "228 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTB `Vuc ~T0 @X0 0 e@6 ]
-"4196
-[v _RD5 `Vb ~T0 @X0 0 e@69 ]
-"4199
-[v _RD6 `Vb ~T0 @X0 0 e@70 ]
-"4202
-[v _RD7 `Vb ~T0 @X0 0 e@71 ]
+"4205
+[v _RE0 `Vb ~T0 @X0 0 e@72 ]
+"4208
+[v _RE1 `Vb ~T0 @X0 0 e@73 ]
+"4211
+[v _RE2 `Vb ~T0 @X0 0 e@74 ]
 [v F1258 `(v ~T0 @X0 1 tf1`ul ]
 "92 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
 [v __delay `JF1258 ~T0 @X0 0 e ]
@@ -1576,21 +1576,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LCD.c: 52: PORTB=a;
 "52
 [e = _PORTB _a ]
-[; ;LCD.c: 53: RD5=0;
+[; ;LCD.c: 53: RE0=0;
 "53
-[e = _RD5 -> -> 0 `i `b ]
-[; ;LCD.c: 54: RD6=0;
+[e = _RE0 -> -> 0 `i `b ]
+[; ;LCD.c: 54: RE1=0;
 "54
-[e = _RD6 -> -> 0 `i `b ]
-[; ;LCD.c: 55: RD7=1;
+[e = _RE1 -> -> 0 `i `b ]
+[; ;LCD.c: 55: RE2=1;
 "55
-[e = _RD7 -> -> 1 `i `b ]
+[e = _RE2 -> -> 1 `i `b ]
 [; ;LCD.c: 56: _delay((unsigned long)((1)*(4000000/4000.0)));
 "56
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;LCD.c: 57: RD7=0;
+[; ;LCD.c: 57: RE2=0;
 "57
-[e = _RD7 -> -> 0 `i `b ]
+[e = _RE2 -> -> 0 `i `b ]
 [; ;LCD.c: 58: }
 "58
 [e :UE 140 ]
@@ -1609,21 +1609,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LCD.c: 63: PORTB=b;
 "63
 [e = _PORTB _b ]
-[; ;LCD.c: 64: RD5=1;
+[; ;LCD.c: 64: RE0=1;
 "64
-[e = _RD5 -> -> 1 `i `b ]
-[; ;LCD.c: 65: RD6=0;
+[e = _RE0 -> -> 1 `i `b ]
+[; ;LCD.c: 65: RE1=0;
 "65
-[e = _RD6 -> -> 0 `i `b ]
-[; ;LCD.c: 66: RD7=1;
+[e = _RE1 -> -> 0 `i `b ]
+[; ;LCD.c: 66: RE2=1;
 "66
-[e = _RD7 -> -> 1 `i `b ]
+[e = _RE2 -> -> 1 `i `b ]
 [; ;LCD.c: 67: _delay((unsigned long)((1)*(4000000/4000.0)));
 "67
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;LCD.c: 68: RD7=0;
+[; ;LCD.c: 68: RE2=0;
 "68
-[e = _RD7 -> -> 0 `i `b ]
+[e = _RE2 -> -> 0 `i `b ]
 [; ;LCD.c: 69: }
 "69
 [e :UE 141 ]

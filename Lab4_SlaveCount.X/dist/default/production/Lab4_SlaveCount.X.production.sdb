@@ -7,14 +7,12 @@
 [v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
 "93
 [v _I2C_Slave_Init I2C_Slave_Init `(v  1 e 1 0 ]
-"61 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+"50 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
 [v _isr isr `II(v  1 e 1 0 ]
-"120
+"87
 [v _main main `(v  1 e 1 0 ]
-"136
+"101
 [v _setup setup `(v  1 e 1 0 ]
-"169
-[v _botones botones `(v  1 e 1 0 ]
 "5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
@@ -25,44 +23,11 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"166 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
-[v _PORTA PORTA `VEuc  1 e 1 @5 ]
-"228
+"228 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S316 . 1 `uc 1 RB0 1 0 :1:0 
-`uc 1 RB1 1 0 :1:1 
-`uc 1 RB2 1 0 :1:2 
-`uc 1 RB3 1 0 :1:3 
-`uc 1 RB4 1 0 :1:4 
-`uc 1 RB5 1 0 :1:5 
-`uc 1 RB6 1 0 :1:6 
-`uc 1 RB7 1 0 :1:7 
-]
-"245
-[u S325 . 1 `S316 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES325  1 e 1 @6 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
-"414
-[v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S22 . 1 `uc 1 RBIF 1 0 :1:0 
-`uc 1 INTF 1 0 :1:1 
-`uc 1 T0IF 1 0 :1:2 
-`uc 1 RBIE 1 0 :1:3 
-`uc 1 INTE 1 0 :1:4 
-`uc 1 T0IE 1 0 :1:5 
-`uc 1 PEIE 1 0 :1:6 
-`uc 1 GIE 1 0 :1:7 
-]
-"482
-[s S31 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 TMR0IF 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 TMR0IE 1 0 :1:5 
-]
-[u S36 . 1 `S22 1 . 1 0 `S31 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES36  1 e 1 @11 ]
-[s S55 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S22 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -71,53 +36,29 @@
 `uc 1 ADIF 1 0 :1:6 
 ]
 "553
-[u S63 . 1 `S55 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES63  1 e 1 @12 ]
+[u S30 . 1 `S22 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES30  1 e 1 @12 ]
 "843
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "850
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
-[s S74 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S41 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "870
-[s S80 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S47 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
-[u S85 . 1 `S74 1 . 1 0 `S80 1 . 1 0 ]
-[v _SSPCONbits SSPCONbits `VES85  1 e 1 @20 ]
-[s S233 . 1 `uc 1 PS 1 0 :3:0 
-`uc 1 PSA 1 0 :1:3 
-`uc 1 T0SE 1 0 :1:4 
-`uc 1 T0CS 1 0 :1:5 
-`uc 1 INTEDG 1 0 :1:6 
-`uc 1 nRBPU 1 0 :1:7 
-]
-"1366
-[s S240 . 1 `uc 1 PS0 1 0 :1:0 
-`uc 1 PS1 1 0 :1:1 
-`uc 1 PS2 1 0 :1:2 
-]
-[u S244 . 1 `S233 1 . 1 0 `S240 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES244  1 e 1 @129 ]
-[s S210 . 1 `uc 1 TRISB0 1 0 :1:0 
-`uc 1 TRISB1 1 0 :1:1 
-`uc 1 TRISB2 1 0 :1:2 
-`uc 1 TRISB3 1 0 :1:3 
-`uc 1 TRISB4 1 0 :1:4 
-`uc 1 TRISB5 1 0 :1:5 
-`uc 1 TRISB6 1 0 :1:6 
-`uc 1 TRISB7 1 0 :1:7 
-]
-"1495
-[u S219 . 1 `S210 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES219  1 e 1 @134 ]
-[s S457 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S52 . 1 `S41 1 . 1 0 `S47 1 . 1 0 ]
+[v _SSPCONbits SSPCONbits `VES52  1 e 1 @20 ]
+"1478
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+[s S249 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -127,29 +68,27 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1557
-[u S466 . 1 `S457 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES466  1 e 1 @135 ]
+[u S258 . 1 `S249 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES258  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-"1664
-[v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S420 . 1 `uc 1 SCS 1 0 :1:0 
+[s S212 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S426 . 1 `uc 1 . 1 0 :4:0 
+[s S218 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S431 . 1 `S420 1 . 1 0 `S426 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES431  1 e 1 @143 ]
+[u S223 . 1 `S212 1 . 1 0 `S218 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES223  1 e 1 @143 ]
 "1979
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
-[s S478 . 1 `uc 1 SEN 1 0 :1:0 
+[s S270 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -159,13 +98,13 @@
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1996
-[u S487 . 1 `S478 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES487  1 e 1 @145 ]
+[u S279 . 1 `S270 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES279  1 e 1 @145 ]
 "2048
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2177
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
-[s S101 . 1 `uc 1 BF 1 0 :1:0 
+[s S68 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -175,102 +114,60 @@
 `uc 1 SMP 1 0 :1:7 
 ]
 "2231
-[s S110 . 1 `uc 1 . 1 0 :2:0 
+[s S77 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S115 . 1 `uc 1 . 1 0 :2:0 
+[s S82 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DATA 1 0 :1:5 
 ]
-[s S121 . 1 `uc 1 . 1 0 :2:0 
+[s S88 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S126 . 1 `uc 1 . 1 0 :2:0 
+[s S93 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S131 . 1 `uc 1 . 1 0 :2:0 
+[s S98 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S136 . 1 `uc 1 . 1 0 :2:0 
+[s S103 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[u S141 . 1 `S101 1 . 1 0 `S110 1 . 1 0 `S115 1 . 1 0 `S121 1 . 1 0 `S126 1 . 1 0 `S131 1 . 1 0 `S136 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES141  1 e 1 @148 ]
-[s S259 . 1 `uc 1 WPUB 1 0 :8:0 
-]
-"2366
-[s S261 . 1 `uc 1 WPUB0 1 0 :1:0 
-`uc 1 WPUB1 1 0 :1:1 
-`uc 1 WPUB2 1 0 :1:2 
-`uc 1 WPUB3 1 0 :1:3 
-`uc 1 WPUB4 1 0 :1:4 
-`uc 1 WPUB5 1 0 :1:5 
-`uc 1 WPUB6 1 0 :1:6 
-`uc 1 WPUB7 1 0 :1:7 
-]
-[u S270 . 1 `S259 1 . 1 0 `S261 1 . 1 0 ]
-[v _WPUBbits WPUBbits `VES270  1 e 1 @149 ]
-[s S290 . 1 `uc 1 IOCB 1 0 :8:0 
-]
-"2436
-[s S292 . 1 `uc 1 IOCB0 1 0 :1:0 
-`uc 1 IOCB1 1 0 :1:1 
-`uc 1 IOCB2 1 0 :1:2 
-`uc 1 IOCB3 1 0 :1:3 
-`uc 1 IOCB4 1 0 :1:4 
-`uc 1 IOCB5 1 0 :1:5 
-`uc 1 IOCB6 1 0 :1:6 
-`uc 1 IOCB7 1 0 :1:7 
-]
-[u S301 . 1 `S290 1 . 1 0 `S292 1 . 1 0 ]
-[v _IOCBbits IOCBbits `VES301  1 e 1 @150 ]
+[u S108 . 1 `S68 1 . 1 0 `S77 1 . 1 0 `S82 1 . 1 0 `S88 1 . 1 0 `S93 1 . 1 0 `S98 1 . 1 0 `S103 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES108  1 e 1 @148 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
 "3641
 [v _BF BF `VEb  1 e 0 @1184 ]
-"3896
-[v _GIE GIE `VEb  1 e 0 @95 ]
-"4040
-[v _PEIE PEIE `VEb  1 e 0 @94 ]
-"4274
-[v _SSPIE SSPIE `VEb  1 e 0 @1123 ]
-"4277
-[v _SSPIF SSPIF `VEb  1 e 0 @99 ]
 "4457
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "4460
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
-"46 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+"40 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
 [v _z z `uc  1 e 1 0 ]
-"48
-[v _antirrebote1 antirrebote1 `uc  1 e 1 0 ]
-"49
-[v _antirrebote2 antirrebote2 `uc  1 e 1 0 ]
-"50
-[v _cuenta cuenta `uc  1 e 1 0 ]
-"120
+"87
 [v _main main `(v  1 e 1 0 ]
 {
-"132
+"97
 } 0
-"136
+"101
 [v _setup setup `(v  1 e 1 0 ]
 {
-"164
+"111
 } 0
 "93 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
 [v _I2C_Slave_Init I2C_Slave_Init `(v  1 e 1 0 ]
@@ -278,16 +175,11 @@
 [v I2C_Slave_Init@address address `uc  1 a 1 wreg ]
 [v I2C_Slave_Init@address address `uc  1 a 1 wreg ]
 "95
-[v I2C_Slave_Init@address address `uc  1 a 1 5 ]
-"105
+[v I2C_Slave_Init@address address `uc  1 a 1 3 ]
+"102
 } 0
-"169 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-[v _botones botones `(v  1 e 1 0 ]
-{
-"187
-} 0
-"61
+"50 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"116
+"83
 } 0

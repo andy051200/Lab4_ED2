@@ -2526,22 +2526,22 @@ cmd(0x80);
 void cmd(unsigned char a)
 {
 PORTB=a;
-RD5=0;
-RD6=0;
-RD7=1;
+RE0=0;
+RE1=0;
+RE2=1;
 _delay((unsigned long)((1)*(4000000/4000.0)));
-RD7=0;
+RE2=0;
 }
 
 
 void dat(unsigned char b)
 {
 PORTB=b;
-RD5=1;
-RD6=0;
-RD7=1;
+RE0=1;
+RE1=0;
+RE2=1;
 _delay((unsigned long)((1)*(4000000/4000.0)));
-RD7=0;
+RE2=0;
 }
 
 

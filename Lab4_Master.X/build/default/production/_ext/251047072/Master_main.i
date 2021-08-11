@@ -2,7 +2,7 @@
 # 1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
 
 
-# 15
+# 11
 #pragma config FOSC = EXTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2624,75 +2624,40 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 void I2C_Slave_Init(uint8_t address);
 
-# 37 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.h"
-void lcd_init();
-void lcd_clear(void);
-void cmd(unsigned char a);
-void dat(unsigned char b);
-void show(unsigned char *s);
-void lcd_linea(char a, char b);
-void lcd_mov_derecha(void);
-void lcd_mov_izquierda(void);
-
-# 46 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
-unsigned char de_asistente1;
-
-# 50
+# 45 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
 void setup(void);
 
-# 55
-void __interrupt() isr(void)
-{}
 
-# 61
-void main(void)
-{
+
+
+void main(void) {
 setup();
-lcd_clear();
-lcd_init();
-cmd(0x90);
-_delay((unsigned long)((1)*(8000000/4000.0)));
-
-while(1)
-{
-
+while(1){
 I2C_Master_Start();
 I2C_Master_Write(0x50);
-I2C_Master_Write(0);
+I2C_Master_Write(PORTB);
 I2C_Master_Stop();
-_delay((unsigned long)((10)*(8000000/4000.0)));
+_delay((unsigned long)((200)*(8000000/4000.0)));
 
 I2C_Master_Start();
 I2C_Master_Write(0x51);
-PORTA = I2C_Master_Read(0);
+PORTD = I2C_Master_Read(0);
 I2C_Master_Stop();
-_delay((unsigned long)((10)*(8000000/4000.0)));
-
-
-
-
-lcd_linea(1,1);
-show(de_asistente1);
-lcd_linea(2,1);
-show(PORTA);
-
+_delay((unsigned long)((200)*(8000000/4000.0)));
+PORTB++;
+PORTD=0;
 }
 return;
 }
 
-# 98
-void setup(void)
-{
+
+
+void setup(void){
 ANSEL = 0;
 ANSELH = 0;
-TRISA = 0;
 TRISB = 0;
 TRISD = 0;
-TRISE = 0;
-PORTA = 0;
 PORTB = 0;
 PORTD = 0;
-PORTE = 0;
 I2C_Master_Init(100000);
 }
-
