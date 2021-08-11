@@ -11,16 +11,16 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
+$C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
 $dist/default/production\Lab4_SlaveCount.X.production.o
 cinit CODE 0 F F 6 2
-text1 CODE 0 91 91 13 2
-text2 CODE 0 A4 A4 12 2
+text1 CODE 0 AB AB 18 2
+text2 CODE 0 78 78 1A 2
 text3 CODE 0 15 15 63 2
-maintext CODE 0 78 78 19 2
+maintext CODE 0 92 92 19 2
 cstackCOMMON COMMON 1 70 70 7 1
 intentry CODE 0 4 4 8 2
 bssCOMMON COMMON 1 77 77 2 1
@@ -40,13 +40,13 @@ BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST B6-1FFF 2
+CONST C3-1FFF 2
 ENTRY 3-3 2
-ENTRY B6-1FFF 2
+ENTRY C3-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
 CODE 3-3 2
-CODE B6-1FFF 2
+CODE C3-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
@@ -54,9 +54,9 @@ SFR3 180-18F 1
 COMMON 79-7D 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE B6-1FFF 2
+STRCODE C3-1FFF 2
 STRING 3-3 2
-STRING B6-1FFF 2
+STRING C3-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -71,61 +71,66 @@ STRING B6-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Lab4_SlaveCount.X.production.o
-F cinit CODE >781:C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.s
-F cinit CODE >784:C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.s
-F cinit CODE >798:C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.s
-10 cinit CODE >799:C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.s
-11 cinit CODE >805:C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.s
-11 cinit CODE >807:C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.s
-12 cinit CODE >808:C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.s
-4 intentry CODE >57:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-15 text3 CODE >57:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-15 text3 CODE >59:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-1B text3 CODE >62:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-1C text3 CODE >64:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-24 text3 CODE >66:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-28 text3 CODE >67:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-29 text3 CODE >68:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-2A text3 CODE >69:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-2B text3 CODE >72:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-35 text3 CODE >75:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-3B text3 CODE >77:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-3C text3 CODE >78:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-3D text3 CODE >79:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-43 text3 CODE >80:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-47 text3 CODE >81:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-4C text3 CODE >83:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-4D text3 CODE >84:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-55 text3 CODE >86:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-5B text3 CODE >87:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-5E text3 CODE >88:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-62 text3 CODE >89:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-63 text3 CODE >90:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-68 text3 CODE >91:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-6E text3 CODE >92:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-6E text3 CODE >94:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-71 text3 CODE >96:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-A4 text2 CODE >93:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
-A5 text2 CODE >95:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
-A9 text2 CODE >96:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
-AD text2 CODE >97:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
-B1 text2 CODE >98:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
-B3 text2 CODE >99:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
-B4 text2 CODE >100:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
-B5 text2 CODE >102:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
-91 text1 CODE >114:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-91 text1 CODE >115:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-94 text1 CODE >116:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-95 text1 CODE >118:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-98 text1 CODE >119:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-99 text1 CODE >121:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-9C text1 CODE >122:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-9D text1 CODE >123:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-A3 text1 CODE >124:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-78 maintext CODE >100:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-78 maintext CODE >102:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-7D maintext CODE >106:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
-80 maintext CODE >107:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+F cinit CODE >789:C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.s
+F cinit CODE >792:C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.s
+F cinit CODE >806:C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.s
+10 cinit CODE >807:C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.s
+11 cinit CODE >813:C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.s
+11 cinit CODE >815:C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.s
+12 cinit CODE >816:C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.s
+4 intentry CODE >50:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+15 text3 CODE >50:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+15 text3 CODE >51:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+1B text3 CODE >53:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+1C text3 CODE >55:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+24 text3 CODE >56:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+28 text3 CODE >57:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+29 text3 CODE >58:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+2A text3 CODE >59:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+2B text3 CODE >62:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+35 text3 CODE >64:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+3B text3 CODE >66:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+3C text3 CODE >67:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+3D text3 CODE >68:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+43 text3 CODE >69:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+47 text3 CODE >70:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+4C text3 CODE >72:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+55 text3 CODE >73:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+5B text3 CODE >74:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+5E text3 CODE >75:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+62 text3 CODE >76:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+63 text3 CODE >77:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+68 text3 CODE >78:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+6E text3 CODE >79:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+6E text3 CODE >81:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+71 text3 CODE >83:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+78 text2 CODE >93:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+79 text2 CODE >95:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+7D text2 CODE >96:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+81 text2 CODE >97:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+85 text2 CODE >98:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+87 text2 CODE >99:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+88 text2 CODE >100:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+89 text2 CODE >101:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+8A text2 CODE >102:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+8B text2 CODE >103:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+8E text2 CODE >104:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+91 text2 CODE >105:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/I2C.c
+AB text1 CODE >101:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+AB text1 CODE >102:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+AE text1 CODE >103:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+AF text1 CODE >105:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+B2 text1 CODE >106:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+B3 text1 CODE >108:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+B6 text1 CODE >109:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+B7 text1 CODE >110:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+BB text1 CODE >111:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+BC text1 CODE >113:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+C2 text1 CODE >114:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+92 maintext CODE >87:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+92 maintext CODE >88:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+97 maintext CODE >93:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
+9A maintext CODE >94:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_SlaveCount.X/Main_slaveCount.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -140,7 +145,7 @@ A3 text1 CODE >124:C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Slav
 %SYMTAB
 _z 78 0 COMMON 1 bssCOMMON dist/default/production\Lab4_SlaveCount.X.production.o
 ___latbits 2 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
-__Hspace_0 B6 0 ABS 0 - -
+__Hspace_0 C3 0 ABS 0 - -
 __Hspace_1 79 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
@@ -148,19 +153,20 @@ __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 _BF 4A0 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
-_main F0 0 CODE 0 maintext dist/default/production\Lab4_SlaveCount.X.production.o
+_PEIE 5E 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
+_main 124 0 CODE 0 maintext dist/default/production\Lab4_SlaveCount.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
-start 18 0 CODE 0 init C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
+start 18 0 CODE 0 init C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
@@ -169,9 +175,9 @@ __Hclrtext 0 0 ABS 0 clrtext -
 _ANSELH 189 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 _SSPCONbits 14 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
-___stacklo 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
-_I2C_Slave_Init 148 0 CODE 0 text2 dist/default/production\Lab4_SlaveCount.X.production.o
+___stackhi 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
+___stacklo 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
+_I2C_Slave_Init F0 0 CODE 0 text2 dist/default/production\Lab4_SlaveCount.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\Lab4_SlaveCount.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
@@ -180,13 +186,13 @@ _SSPBUF 13 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 _SSPCON 14 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 _TRISC3 43B 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 _TRISC4 43C 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
+___int_sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
 __Hbank3 0 0 ABS 0 bank3 -
 __Hcinit 2A 0 CODE 0 cinit -
-__end_of_I2C_Slave_Init 16C 0 CODE 0 text2 dist/default/production\Lab4_SlaveCount.X.production.o
+__end_of_I2C_Slave_Init 124 0 CODE 0 text2 dist/default/production\Lab4_SlaveCount.X.production.o
 __Hstack 0 0 STACK 2 stack -
 __Hmaintext 0 0 ABS 0 maintext -
 __Hcommon 0 0 ABS 0 common -
@@ -214,7 +220,8 @@ __Lsfr2 0 0 ABS 0 sfr2 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-__S0 B6 0 ABS 0 - -
+_GIE 5F 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
+__S0 C3 0 ABS 0 - -
 __S1 79 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
@@ -222,8 +229,8 @@ _isr 2A 0 CODE 0 text3 dist/default/production\Lab4_SlaveCount.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 __end_of_isr F0 0 CODE 0 text3 dist/default/production\Lab4_SlaveCount.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\ANDYBO~1\AppData\Local\Temp\sk80.o
-__pmaintext F0 0 CODE 0 maintext dist/default/production\Lab4_SlaveCount.X.production.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\ANDYBO~1\AppData\Local\Temp\sebg.o
+__pmaintext 124 0 CODE 0 maintext dist/default/production\Lab4_SlaveCount.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
 I2C_Slave_Init@address 73 0 COMMON 1 cstackCOMMON dist/default/production\Lab4_SlaveCount.X.production.o
@@ -241,8 +248,8 @@ __Hintentry 18 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 6 0 CODE 0 reset_vec -
 _SSPCON2bits 91 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
-__ptext1 122 0 CODE 0 text1 dist/default/production\Lab4_SlaveCount.X.production.o
-__ptext2 148 0 CODE 0 text2 dist/default/production\Lab4_SlaveCount.X.production.o
+__ptext1 156 0 CODE 0 text1 dist/default/production\Lab4_SlaveCount.X.production.o
+__ptext2 F0 0 CODE 0 text2 dist/default/production\Lab4_SlaveCount.X.production.o
 __ptext3 2A 0 CODE 0 text3 dist/default/production\Lab4_SlaveCount.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
@@ -255,17 +262,19 @@ __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\Lab4_SlaveCou
 _SSPCON2 91 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 _SSPSTAT 94 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 __Hend_init 1E 0 CODE 0 end_init -
-__end_of_main 122 0 CODE 0 maintext dist/default/production\Lab4_SlaveCount.X.production.o
+__end_of_main 156 0 CODE 0 maintext dist/default/production\Lab4_SlaveCount.X.production.o
 _ANSEL 188 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 _PORTD 8 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
+_SSPIE 463 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
+_SSPIF 63 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 _TRISB 86 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 _TRISD 88 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
-__end_of_setup 148 0 CODE 0 text1 dist/default/production\Lab4_SlaveCount.X.production.o
+__end_of_setup 186 0 CODE 0 text1 dist/default/production\Lab4_SlaveCount.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 interrupt_function 8 0 CODE 0 intentry dist/default/production\Lab4_SlaveCount.X.production.o
-_setup 122 0 CODE 0 text1 dist/default/production\Lab4_SlaveCount.X.production.o
+_setup 156 0 CODE 0 text1 dist/default/production\Lab4_SlaveCount.X.production.o
 _SSPSTATbits 94 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
 __pintentry 8 0 CODE 0 intentry dist/default/production\Lab4_SlaveCount.X.production.o
 __size_of_isr 0 0 ABS 0 - dist/default/production\Lab4_SlaveCount.X.production.o
@@ -296,7 +305,7 @@ __initialization 1E 0 CODE 0 cinit dist/default/production\Lab4_SlaveCount.X.pro
 # All other numeric quantities are in decimal.
 %SEGMENTS
 cstackCOMMON 1 70 70 9 1
-intentry 0 4 8 B2 2
+intentry 0 4 8 BF 2
 reset_vec 0 0 0 3 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section

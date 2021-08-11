@@ -26,10 +26,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TRISB `Vuc ~T0 @X0 0 e@134 ]
 "1602
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
+"1868
+[s S70 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 ]
+[n S70 . SCS LTS HTS OSTS IRCF ]
+"1875
+[s S71 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S71 . . IRCF0 IRCF1 IRCF2 ]
+"1867
+[u S69 `S70 1 `S71 1 ]
+[n S69 . . . ]
+"1882
+[v _OSCCONbits `VS69 ~T0 @X0 0 e@143 ]
 "29 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.h
 [v _I2C_Master_Init `(v ~T0 @X0 0 ef1`Cul ]
 "11 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c
-[p x FOSC=EXTRC_NOCLKOUT ]
+[p x FOSC=INTRC_NOCLKOUT ]
 "12
 [p x WDTE=OFF ]
 "13
@@ -1658,10 +1669,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Master_main.c: 77: PORTD = 0;
 "77
 [e = _PORTD -> -> 0 `i `uc ]
-[; ;Master_main.c: 78: I2C_Master_Init(100000);
+[; ;Master_main.c: 78: OSCCONbits.IRCF=0b111;
 "78
-[e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
-[; ;Master_main.c: 79: }
+[e = . . _OSCCONbits 0 4 -> -> 7 `i `uc ]
+[; ;Master_main.c: 79: OSCCONbits.SCS=1;
 "79
+[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
+[; ;Master_main.c: 80: I2C_Master_Init(100000);
+"80
+[e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
+[; ;Master_main.c: 81: }
+"81
 [e :UE 142 ]
 }

@@ -29,7 +29,7 @@
 #endif
 
 #include <xc.h> // include processor files - each processor file is guarded.  
-#define _XTAL_FREQ 4000000
+//#define _XTAL_FREQ 4000000
 /*-----------------------------------------------------------------------------
 ----------- prototipo de funcion de configuracion de displays -----------------
 -----------------------------------------------------------------------------*/

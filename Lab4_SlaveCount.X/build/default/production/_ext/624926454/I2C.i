@@ -2754,5 +2754,8 @@ void I2C_Slave_Init(uint8_t address)
     SSPCON2 = 0x01;
     TRISC3 = 1;
     TRISC4 = 1;
-
+    GIE = 1;
+    PEIE = 1;
+    SSPIF = 0;
+    SSPIE = 1;
 }

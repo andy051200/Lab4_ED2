@@ -43,7 +43,7 @@
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S131 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S102 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -53,27 +53,27 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1557
-[u S140 . 1 `S131 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES140  1 e 1 @135 ]
+[u S111 . 1 `S102 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES111  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S94 . 1 `uc 1 SCS 1 0 :1:0 
+[s S56 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S100 . 1 `uc 1 . 1 0 :4:0 
+[s S62 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S105 . 1 `S94 1 . 1 0 `S100 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES105  1 e 1 @143 ]
+[u S67 . 1 `S56 1 . 1 0 `S62 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES67  1 e 1 @143 ]
 "1979
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
-[s S152 . 1 `uc 1 SEN 1 0 :1:0 
+[s S123 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -83,8 +83,8 @@
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1996
-[u S161 . 1 `S152 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES161  1 e 1 @145 ]
+[u S132 . 1 `S123 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES132  1 e 1 @145 ]
 "2048
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2177
@@ -119,7 +119,7 @@
 "71
 [v _setup setup `(v  1 e 1 0 ]
 {
-"79
+"81
 } 0
 "16 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]

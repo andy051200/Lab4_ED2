@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED="C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c" "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.c" "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Osc_config.c" "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c"
+SOURCEFILES_QUOTED_IF_SPACED="C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c" "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c" "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.c" "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Osc_config.c"
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/251047072/Master_main.p1 ${OBJECTDIR}/_ext/251047072/LCD.p1 ${OBJECTDIR}/_ext/251047072/Osc_config.p1 ${OBJECTDIR}/_ext/251047072/I2C.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/251047072/Master_main.p1.d ${OBJECTDIR}/_ext/251047072/LCD.p1.d ${OBJECTDIR}/_ext/251047072/Osc_config.p1.d ${OBJECTDIR}/_ext/251047072/I2C.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/251047072/Master_main.p1 ${OBJECTDIR}/_ext/251047072/I2C.p1 ${OBJECTDIR}/_ext/251047072/LCD.p1 ${OBJECTDIR}/_ext/251047072/Osc_config.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/251047072/Master_main.p1.d ${OBJECTDIR}/_ext/251047072/I2C.p1.d ${OBJECTDIR}/_ext/251047072/LCD.p1.d ${OBJECTDIR}/_ext/251047072/Osc_config.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/251047072/Master_main.p1 ${OBJECTDIR}/_ext/251047072/LCD.p1 ${OBJECTDIR}/_ext/251047072/Osc_config.p1 ${OBJECTDIR}/_ext/251047072/I2C.p1
+OBJECTFILES=${OBJECTDIR}/_ext/251047072/Master_main.p1 ${OBJECTDIR}/_ext/251047072/I2C.p1 ${OBJECTDIR}/_ext/251047072/LCD.p1 ${OBJECTDIR}/_ext/251047072/Osc_config.p1
 
 # Source Files
-SOURCEFILES=C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.c C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Osc_config.c C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c
+SOURCEFILES=C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.c C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Osc_config.c
 
 
 
@@ -102,6 +102,14 @@ ${OBJECTDIR}/_ext/251047072/Master_main.p1: C:/Users/Andy\ Bonilla/Documents/Git
 	@-${MV} ${OBJECTDIR}/_ext/251047072/Master_main.d ${OBJECTDIR}/_ext/251047072/Master_main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/251047072/Master_main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/_ext/251047072/I2C.p1: C:/Users/Andy\ Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/_ext/251047072" 
+	@${RM} ${OBJECTDIR}/_ext/251047072/I2C.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/251047072/I2C.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/251047072/I2C.p1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c" 
+	@-${MV} ${OBJECTDIR}/_ext/251047072/I2C.d ${OBJECTDIR}/_ext/251047072/I2C.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/251047072/I2C.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 ${OBJECTDIR}/_ext/251047072/LCD.p1: C:/Users/Andy\ Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/_ext/251047072" 
 	@${RM} ${OBJECTDIR}/_ext/251047072/LCD.p1.d 
@@ -118,14 +126,6 @@ ${OBJECTDIR}/_ext/251047072/Osc_config.p1: C:/Users/Andy\ Bonilla/Documents/GitH
 	@-${MV} ${OBJECTDIR}/_ext/251047072/Osc_config.d ${OBJECTDIR}/_ext/251047072/Osc_config.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/251047072/Osc_config.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/251047072/I2C.p1: C:/Users/Andy\ Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/_ext/251047072" 
-	@${RM} ${OBJECTDIR}/_ext/251047072/I2C.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/251047072/I2C.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/251047072/I2C.p1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c" 
-	@-${MV} ${OBJECTDIR}/_ext/251047072/I2C.d ${OBJECTDIR}/_ext/251047072/I2C.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/251047072/I2C.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 else
 ${OBJECTDIR}/_ext/251047072/Master_main.p1: C:/Users/Andy\ Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/_ext/251047072" 
@@ -134,6 +134,14 @@ ${OBJECTDIR}/_ext/251047072/Master_main.p1: C:/Users/Andy\ Bonilla/Documents/Git
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/251047072/Master_main.p1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c" 
 	@-${MV} ${OBJECTDIR}/_ext/251047072/Master_main.d ${OBJECTDIR}/_ext/251047072/Master_main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/251047072/Master_main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/251047072/I2C.p1: C:/Users/Andy\ Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/_ext/251047072" 
+	@${RM} ${OBJECTDIR}/_ext/251047072/I2C.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/251047072/I2C.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/251047072/I2C.p1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c" 
+	@-${MV} ${OBJECTDIR}/_ext/251047072/I2C.d ${OBJECTDIR}/_ext/251047072/I2C.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/251047072/I2C.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/_ext/251047072/LCD.p1: C:/Users/Andy\ Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/_ext/251047072" 
@@ -150,14 +158,6 @@ ${OBJECTDIR}/_ext/251047072/Osc_config.p1: C:/Users/Andy\ Bonilla/Documents/GitH
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/251047072/Osc_config.p1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Osc_config.c" 
 	@-${MV} ${OBJECTDIR}/_ext/251047072/Osc_config.d ${OBJECTDIR}/_ext/251047072/Osc_config.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/251047072/Osc_config.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/_ext/251047072/I2C.p1: C:/Users/Andy\ Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/_ext/251047072" 
-	@${RM} ${OBJECTDIR}/_ext/251047072/I2C.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/251047072/I2C.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c90 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/_ext/251047072/I2C.p1 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.c" 
-	@-${MV} ${OBJECTDIR}/_ext/251047072/I2C.d ${OBJECTDIR}/_ext/251047072/I2C.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/251047072/I2C.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
