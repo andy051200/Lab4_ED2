@@ -45,22 +45,44 @@ Descripcion: un laboratoria bien fumado tbh pero chilero
  -----------------------------------------------------------------------------*/
 uint8_t z;
 uint8_t dato;
+unsigned char antirrebote1=0; //variable de antirrebote para boton SUMA
+unsigned char antirrebote2=0; //variable de antirrebote para boton RESTA
+unsigned char cuenta;        //variable para contar PORTD
+
 
 /*-----------------------------------------------------------------------------
  ------------------------ PROTOTIPOS DE FUNCIONES ------------------------------
  -----------------------------------------------------------------------------*/
 void setup(void);
-
+void botones(void);
 /*-----------------------------------------------------------------------------
  ---------------------------- INTERRUPCIONES ----------------------------------
  -----------------------------------------------------------------------------*/
 void __interrupt() isr(void)
 {
-   if(PIR1bits.SSPIF == 1)
-   { 
-
+    if (INTCONbits.RBIF)
+    {
+        switch(PORTB)
+        {
+            case(0b11111110):     //si se apacha el boton de SUMA
+                antirrebote1=1;
+                break;
+            
+            case(0b11111101):     //si se apacha el boton de RESTA
+                antirrebote2=1;
+                break;
+            
+            default:                    //si alguno no es apachado
+                antirrebote1=0;
+                antirrebote2=0;
+                break;
+        }
+        INTCONbits.RBIF=0;              //se apaga bandera de interrupcion
+    }
+      
+    if(PIR1bits.SSPIF == 1)
+    { 
         SSPCONbits.CKP = 0;
-       
         if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL))
         {
             z = SSPBUF;                 // Read the previous value to clear the buffer
@@ -71,23 +93,21 @@ void __interrupt() isr(void)
 
         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) 
         {
-            //__delay_us(7);
             z = SSPBUF;                 // Lectura del SSBUF para limpiar el buffer y la bandera BF
-            //__delay_us(2);
             PIR1bits.SSPIF = 0;         // Limpia bandera de interrupci�n recepci�n/transmisi�n SSP
             SSPCONbits.CKP = 1;         // Habilita entrada de pulsos de reloj SCL
             while(!SSPSTATbits.BF);     // Esperar a que la recepci�n se complete
-            PORTD = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepci�n
-            __delay_us(250);
+            PORTA = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepci�n
+            __delay_us(10);
             
         }
         else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW)
         {
             z = SSPBUF;
             BF = 0;
-            SSPBUF = PORTB;
+            SSPBUF = PORTD;         //se escriba al buffer el valor delPortD
             SSPCONbits.CKP = 1;
-            __delay_us(250);
+            __delay_us(10);
             while(SSPSTATbits.BF);
         }
        
@@ -103,8 +123,10 @@ void main(void)
     
     while(1)
     {
-        PORTB = ~PORTB;
-       __delay_ms(500);
+        botones();      //se jala función de botones
+        if (cuenta==15)
+            cuenta=0;
+        PORTE=PORTD;
     }
     return;
 }
@@ -115,14 +137,51 @@ void setup(void){
     ANSEL = 0;
     ANSELH = 0;
     
-    TRISB = 0;
+    TRISBbits.TRISB0=1;     //RB0 como entrada, boton SUMA
+    TRISBbits.TRISB1=1;     //RB1 como entrada, boton RESTA
     TRISD = 0;
+    TRISE = 0;
     
     PORTB = 0;
     PORTD = 0;
-    I2C_Slave_Init(0x50);   
+    PORTE = 0;
+    cuenta=0;
+    //WEAK PULL UPs PORTB
+    OPTION_REGbits.nRBPU = 0;   // enable Individual pull-ups
+    WPUBbits.WPUB0 = 1;         // enable Pull-Up de RB0 
+    WPUBbits.WPUB1 = 1;         // enable Pull-Up de RB1 
+    
+    //CONFIGURACION DE ESCLAVO I2C
+    I2C_Slave_Init(0x50);       //configuracion y asignacion de direccion
+    
+    //CONFIGURACION DE INTERRUPCIONES
+    INTCONbits.GIE=1;           //se habilitan las interrupciones globales
+    INTCONbits.RBIE=1;          // se habilita IntOnChange
+    INTCONbits.RBIF=0;          // se apaga la bandera de IntOnChangeB  
+    IOCBbits.IOCB0=1;           //se habilita IOCB RB0
+    IOCBbits.IOCB1=1;           //se habilita IOCB RB1
+    return;
 }
 
 /*-----------------------------------------------------------------------------
  --------------------------------- FUNCIONES ----------------------------------
  -----------------------------------------------------------------------------*/
+void botones(void)
+{
+    //-----antirrebote boton SUMA
+    if (antirrebote1==1 && PORTBbits.RB0==0)
+    {
+        cuenta++;
+        PORTD=cuenta;
+        antirrebote1=0;
+    }
+    //-----antirrebote boton RESTA
+    if (antirrebote2==1 && PORTBbits.RB1==0)
+    {
+        cuenta--;
+        PORTD=cuenta;
+        antirrebote2=0;
+    }
+    
+    return;
+}

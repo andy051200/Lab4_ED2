@@ -2634,7 +2634,10 @@ void lcd_linea(char a, char b);
 void lcd_mov_derecha(void);
 void lcd_mov_izquierda(void);
 
-# 50 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
+# 46 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
+unsigned char de_asistente1;
+
+# 50
 void setup(void);
 
 # 55
@@ -2649,32 +2652,35 @@ lcd_clear();
 lcd_init();
 cmd(0x90);
 _delay((unsigned long)((1)*(8000000/4000.0)));
+
 while(1)
 {
 
 I2C_Master_Start();
 I2C_Master_Write(0x50);
-I2C_Master_Write(PORTA);
+I2C_Master_Write(0);
 I2C_Master_Stop();
-_delay((unsigned long)((200)*(8000000/4000.0)));
+_delay((unsigned long)((10)*(8000000/4000.0)));
 
 I2C_Master_Start();
 I2C_Master_Write(0x51);
-PORTE = I2C_Master_Read(0);
+PORTA = I2C_Master_Read(0);
 I2C_Master_Stop();
-_delay((unsigned long)((200)*(8000000/4000.0)));
-PORTA++;
+_delay((unsigned long)((10)*(8000000/4000.0)));
+
+
 
 
 lcd_linea(1,1);
-show(" S1   S2   S3 ");
+show(de_asistente1);
 lcd_linea(2,1);
 show(PORTA);
+
 }
 return;
 }
 
-# 95
+# 98
 void setup(void)
 {
 ANSEL = 0;

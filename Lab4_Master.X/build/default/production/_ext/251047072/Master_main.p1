@@ -18,12 +18,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _I2C_Master_Start `(v ~T0 @X0 0 ef ]
 "55
 [v _I2C_Master_Write `(v ~T0 @X0 0 ef1`ui ]
+"49
+[v _I2C_Master_Stop `(v ~T0 @X0 0 ef ]
 "166 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA `Vuc ~T0 @X0 0 e@5 ]
-"49 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.h
-[v _I2C_Master_Stop `(v ~T0 @X0 0 ef ]
-"414 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
-[v _PORTE `Vuc ~T0 @X0 0 e@9 ]
 "60 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.h
 [v _I2C_Master_Read `(us ~T0 @X0 0 ef1`us ]
 "42 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/LCD.h
@@ -46,6 +44,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 "352
 [v _PORTD `Vuc ~T0 @X0 0 e@8 ]
+"414
+[v _PORTE `Vuc ~T0 @X0 0 e@9 ]
 "29 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/I2C.h
 [v _I2C_Master_Init `(v ~T0 @X0 0 ef1`Cul ]
 "15 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c
@@ -1600,9 +1600,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LCD.h: 42: void lcd_linea(char a, char b);
 [; ;LCD.h: 43: void lcd_mov_derecha(void);
 [; ;LCD.h: 44: void lcd_mov_izquierda(void);
+"46 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c
+[v _de_asistente1 `uc ~T0 @X0 1 e ]
+[; ;Master_main.c: 46: unsigned char de_asistente1;
 [; ;Master_main.c: 50: void setup(void);
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"55 C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c
+"55
 [v _isr `(v ~T4 @X0 1 ef ]
 "56
 {
@@ -1636,115 +1639,110 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Master_main.c: 67: _delay((unsigned long)((1)*(8000000/4000.0)));
 "67
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;Master_main.c: 68: while(1)
-"68
-[e :U 141 ]
-[; ;Master_main.c: 69: {
+[; ;Master_main.c: 69: while(1)
 "69
+[e :U 141 ]
+[; ;Master_main.c: 70: {
+"70
 {
-[; ;Master_main.c: 71: I2C_Master_Start();
-"71
-[e ( _I2C_Master_Start ..  ]
-[; ;Master_main.c: 72: I2C_Master_Write(0x50);
+[; ;Master_main.c: 72: I2C_Master_Start();
 "72
-[e ( _I2C_Master_Write (1 -> -> 80 `i `ui ]
-[; ;Master_main.c: 73: I2C_Master_Write(PORTA);
-"73
-[e ( _I2C_Master_Write (1 -> _PORTA `ui ]
-[; ;Master_main.c: 74: I2C_Master_Stop();
-"74
-[e ( _I2C_Master_Stop ..  ]
-[; ;Master_main.c: 75: _delay((unsigned long)((200)*(8000000/4000.0)));
-"75
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;Master_main.c: 77: I2C_Master_Start();
-"77
 [e ( _I2C_Master_Start ..  ]
-[; ;Master_main.c: 78: I2C_Master_Write(0x51);
-"78
-[e ( _I2C_Master_Write (1 -> -> 81 `i `ui ]
-[; ;Master_main.c: 79: PORTE = I2C_Master_Read(0);
-"79
-[e = _PORTE -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
-[; ;Master_main.c: 80: I2C_Master_Stop();
-"80
+[; ;Master_main.c: 73: I2C_Master_Write(0x50);
+"73
+[e ( _I2C_Master_Write (1 -> -> 80 `i `ui ]
+[; ;Master_main.c: 74: I2C_Master_Write(0);
+"74
+[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
+[; ;Master_main.c: 75: I2C_Master_Stop();
+"75
 [e ( _I2C_Master_Stop ..  ]
-[; ;Master_main.c: 81: _delay((unsigned long)((200)*(8000000/4000.0)));
+[; ;Master_main.c: 76: _delay((unsigned long)((10)*(8000000/4000.0)));
+"76
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;Master_main.c: 78: I2C_Master_Start();
+"78
+[e ( _I2C_Master_Start ..  ]
+[; ;Master_main.c: 79: I2C_Master_Write(0x51);
+"79
+[e ( _I2C_Master_Write (1 -> -> 81 `i `ui ]
+[; ;Master_main.c: 80: PORTA = I2C_Master_Read(0);
+"80
+[e = _PORTA -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
+[; ;Master_main.c: 81: I2C_Master_Stop();
 "81
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;Master_main.c: 82: PORTA++;
+[e ( _I2C_Master_Stop ..  ]
+[; ;Master_main.c: 82: _delay((unsigned long)((10)*(8000000/4000.0)));
 "82
-[e ++ _PORTA -> -> 1 `i `uc ]
-[; ;Master_main.c: 85: lcd_linea(1,1);
-"85
-[e ( _lcd_linea (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-[; ;Master_main.c: 86: show(" S1   S2   S3 ");
-"86
-[e ( _show (1 -> :s 1C `*uc ]
-[; ;Master_main.c: 87: lcd_linea(2,1);
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;Master_main.c: 87: lcd_linea(1,1);
 "87
-[e ( _lcd_linea (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
-[; ;Master_main.c: 88: show(PORTA);
+[e ( _lcd_linea (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+[; ;Master_main.c: 88: show(de_asistente1);
 "88
-[e ( _show (1 -> _PORTA `*uc ]
+[e ( _show (1 -> _de_asistente1 `*uc ]
+[; ;Master_main.c: 89: lcd_linea(2,1);
 "89
+[e ( _lcd_linea (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+[; ;Master_main.c: 90: show(PORTA);
+"90
+[e ( _show (1 -> _PORTA `*uc ]
+"92
 }
 [e :U 140 ]
-"68
+"69
 [e $U 141  ]
 [e :U 142 ]
-[; ;Master_main.c: 89: }
-[; ;Master_main.c: 90: return;
-"90
+[; ;Master_main.c: 92: }
+[; ;Master_main.c: 93: return;
+"93
 [e $UE 139  ]
-[; ;Master_main.c: 91: }
-"91
+[; ;Master_main.c: 94: }
+"94
 [e :UE 139 ]
 }
-"95
+"98
 [v _setup `(v ~T0 @X0 1 ef ]
-"96
+"99
 {
-[; ;Master_main.c: 95: void setup(void)
-[; ;Master_main.c: 96: {
+[; ;Master_main.c: 98: void setup(void)
+[; ;Master_main.c: 99: {
 [e :U _setup ]
 [f ]
-[; ;Master_main.c: 97: ANSEL = 0;
-"97
-[e = _ANSEL -> -> 0 `i `uc ]
-[; ;Master_main.c: 98: ANSELH = 0;
-"98
-[e = _ANSELH -> -> 0 `i `uc ]
-[; ;Master_main.c: 99: TRISA = 0;
-"99
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;Master_main.c: 100: TRISB = 0;
+[; ;Master_main.c: 100: ANSEL = 0;
 "100
-[e = _TRISB -> -> 0 `i `uc ]
-[; ;Master_main.c: 101: TRISD = 0;
+[e = _ANSEL -> -> 0 `i `uc ]
+[; ;Master_main.c: 101: ANSELH = 0;
 "101
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;Master_main.c: 102: TRISE = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
+[; ;Master_main.c: 102: TRISA = 0;
 "102
-[e = _TRISE -> -> 0 `i `uc ]
-[; ;Master_main.c: 103: PORTA = 0;
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;Master_main.c: 103: TRISB = 0;
 "103
-[e = _PORTA -> -> 0 `i `uc ]
-[; ;Master_main.c: 104: PORTB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;Master_main.c: 104: TRISD = 0;
 "104
-[e = _PORTB -> -> 0 `i `uc ]
-[; ;Master_main.c: 105: PORTD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;Master_main.c: 105: TRISE = 0;
 "105
-[e = _PORTD -> -> 0 `i `uc ]
-[; ;Master_main.c: 106: PORTE = 0;
+[e = _TRISE -> -> 0 `i `uc ]
+[; ;Master_main.c: 106: PORTA = 0;
 "106
-[e = _PORTE -> -> 0 `i `uc ]
-[; ;Master_main.c: 107: I2C_Master_Init(100000);
+[e = _PORTA -> -> 0 `i `uc ]
+[; ;Master_main.c: 107: PORTB = 0;
 "107
-[e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
-[; ;Master_main.c: 108: }
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;Master_main.c: 108: PORTD = 0;
 "108
+[e = _PORTD -> -> 0 `i `uc ]
+[; ;Master_main.c: 109: PORTE = 0;
+"109
+[e = _PORTE -> -> 0 `i `uc ]
+[; ;Master_main.c: 110: I2C_Master_Init(100000);
+"110
+[e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
+[; ;Master_main.c: 111: }
+"111
 [e :UE 143 ]
 }
-[a 1C 32 83 49 32 32 32 83 50 32 32 32 83 51 32 0 ]
-

@@ -43,7 +43,7 @@ Descripcion: un laboratoria bien fumado tbh pero chilero
 /*-----------------------------------------------------------------------------
  ----------------------- VARIABLES A IMPLEMTENTAR------------------------------
  -----------------------------------------------------------------------------*/
-
+unsigned char de_asistente1;
 /*-----------------------------------------------------------------------------
  ------------------------ PROTOTIPOS DE FUNCIONES ------------------------------
  -----------------------------------------------------------------------------*/
@@ -65,27 +65,30 @@ void main(void)
     lcd_init();         //invoco la funcion de inicializacion de la lcd
 	cmd(0x90);          //invocao la funcion de configurcion de comandos lc
     __delay_ms(1);
+    
     while(1)
     {
         //------llamado de funciones para comunicacion i2c
         I2C_Master_Start();             //inicializacion de comunicacion
-        I2C_Master_Write(0x50);         //se pone direccion
-        I2C_Master_Write(PORTA);        //se manda la informacion
+        I2C_Master_Write(0x50);         //se pone direccion y escrutura
+        I2C_Master_Write(0);        //se manda la informacion
         I2C_Master_Stop();              //se para la comunicacion
-        __delay_ms(200);
+        __delay_ms(10);
        
         I2C_Master_Start();             //inicializacion de comunicacion
-        I2C_Master_Write(0x51);         //se pone direccion
-        PORTE = I2C_Master_Read(0);     //se recibe la informacion
+        I2C_Master_Write(0x51);         //se pone direccion y lectura
+        PORTA = I2C_Master_Read(0);     //se recibe la informacion
         I2C_Master_Stop();              //se para la comunicacion
-        __delay_ms(200);
-        PORTA++;   
+        __delay_ms(10);
+        //PORTE++;   
         
+        //PORTA=de_asistente1;
         //------llamado de funciones para desplegar valores en lcd
         lcd_linea(1,1);             //selecciono la linea 1 para escribir
-        show(" S1   S2   S3 ");     //mensaje a enviar linea 1
+        show(de_asistente1);//mensaje a enviar linea 1
         lcd_linea(2,1);             //selecciono la linea 2 para escibrir
         show(PORTA);                //mensaje a enviar linea 2
+        
     }
     return;
 }
