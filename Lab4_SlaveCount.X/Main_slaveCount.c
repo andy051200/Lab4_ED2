@@ -173,7 +173,7 @@ void botones(void)
         PORTD=cuenta;
         antirrebote2=0;
     }
-    if (cuenta >=15 && cuenta <=255)
+    if (cuenta >=16 && cuenta <=255)
         cuenta=0;
     
     return;

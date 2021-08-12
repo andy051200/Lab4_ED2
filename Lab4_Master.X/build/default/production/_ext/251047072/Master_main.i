@@ -3,7 +3,8 @@
 
 
 # 15
-#pragma config FOSC = EXTRC_NOCLKOUT
+#pragma config FOSC = INTRC_NOCLKOUT
+
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2634,18 +2635,37 @@ void lcd_linea(char a, char b);
 void lcd_mov_derecha(void);
 void lcd_mov_izquierda(void);
 
-# 49 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
+# 50 "C:/Users/Andy Bonilla/Documents/GitHub/ED2/Lab4_ED2/Lab4_Master.X/Master_main.c"
 unsigned char desde_contador;
 unsigned char desde_pot;
 unsigned char desde_sensor;
+uint8_t NUM;
+char Cen1 = 0;
+char Cen2 = 0;
+char Cen3 = 0;
+char Dec1 = 0;
+char Dec2 = 0;
+char Dec3 = 0;
+char Un1 = 0;
+char Un2 = 0;
+char Un3 = 0;
+char AC1 = 0;
+char AC2 = 0;
+char AC3 = 0;
+char AD1 = 0;
+char AD2 = 0;
+char AD3 = 0;
+char AU1 = 0;
+char AU2 = 0;
+char AU3 = 0;
 
-# 55
+# 75
 void setup(void);
-void mapeos(void);
 unsigned char datos_ascii(uint8_t numero);
+void temperatura(void);
 uint8_t lcd_ascii();
 
-# 62
+# 82
 void main(void) {
 setup();
 lcd_clear();
@@ -2654,6 +2674,7 @@ cmd(0x90);
 _delay((unsigned long)((1)*(8000000/4000.0)));
 while(1)
 {
+temperatura();
 
 I2C_Master_Start();
 I2C_Master_Write(0x50);
@@ -2667,46 +2688,57 @@ desde_contador = I2C_Master_Read(0);
 I2C_Master_Stop();
 _delay((unsigned long)((200)*(8000000/4000.0)));
 
-
 I2C_Master_Start();
 I2C_Master_Write(0x61);
-desde_pot = I2C_Master_Read(0);
+desde_pot =I2C_Master_Read(0);
 I2C_Master_Stop();
 _delay((unsigned long)((200)*(8000000/4000.0)));
-PORTD=desde_pot;
+
+I2C_Master_Start();
+I2C_Master_Write(0x80);
+I2C_Master_Write(0xF3);
+I2C_Master_Stop();
+_delay((unsigned long)((100)*(8000000/4000.0)));
 
 I2C_Master_Start();
 I2C_Master_Write(0x81);
-desde_sensor= I2C_Master_Read(0);
+desde_sensor = I2C_Master_Read(0);
 I2C_Master_Stop();
 _delay((unsigned long)((200)*(8000000/4000.0)));
 
 
 lcd_linea(1,1);
-show(" S1   S2   S3 ");
+show("Count Pot  Temp");
 lcd_linea(2,1);
 show(lcd_ascii());
 }
 return;
 }
 
-# 108
+# 133
 void setup(void){
+
 ANSEL = 0;
 ANSELH = 0;
+
 TRISA = 0;
 TRISB = 0;
 TRISD = 0;
 TRISE = 0;
+
 PORTA = 0;
 PORTB = 0;
 PORTD = 0;
 PORTE = 0;
+
+OSCCONbits.IRCF=0b111;
+OSCCONbits.SCS=1;
+
 I2C_Master_Init(100000);
 
 }
 
-# 127
+# 159
 void mapeos(void)
 {
 
@@ -2764,21 +2796,41 @@ break;
 uint8_t lcd_ascii()
 {
 uint8_t random[16];
-random[0]=datos_ascii(desde_contador);
-random[1]=0x2E;
-random[2]=datos_ascii(desde_contador);
-random[3]=datos_ascii(desde_contador);
+random[0]=32;
+random[1]=32;
+random[2]=datos_ascii((desde_contador/10)%10);
+random[3]=datos_ascii(desde_contador%10);
 random[4]=32;
-random[5]=datos_ascii(desde_contador);
+random[5]=datos_ascii(((2*desde_pot)/100)%10);
 random[6]=0x2E;
-random[7]=datos_ascii(desde_contador);
-random[8]=datos_ascii(desde_contador);
-random[9]=32;
-random[10]=datos_ascii(desde_contador);
-random[11]=32;
-random[12]=32;
-random[13]=32;
-random[14]=32;
-random[15]=32;
+random[7]=datos_ascii(((2*desde_pot)/10)%10);
+random[8]=datos_ascii(desde_pot%10);
+random[9]=86;
+random[10]=32;
+random[11]=AC3;
+random[12]=AD3;
+random[13]=AU3;
+random[14]=0xDF;
+random[15]=67;
 return random;
+}
+
+void temperatura(void){
+if (desde_sensor>=68){
+NUM = 24*desde_sensor/35-1632/35;
+Cen3 = NUM/100;
+Dec3 = (NUM-Cen3*100)/10;
+Un3 = NUM-Cen3*100-Dec3*10;
+AC3 = datos_ascii(Cen3);
+AD3 = datos_ascii(Dec3);
+AU3 = datos_ascii(Un3);
+}
+else{
+NUM = (877/19)-13*desde_sensor/19;
+AC3 = 0x2D;
+Dec3 = NUM/10;
+Un3 = NUM - Dec3*10;
+AD3 = datos_ascii(Dec3);
+AU3 = datos_ascii(Un3);
+}
 }

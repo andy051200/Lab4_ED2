@@ -12,7 +12,8 @@ Descripcion:
 ------------------------------------------------------------------------------*/
 
 // CONFIG1
-#pragma config FOSC = EXTRC_NOCLKOUT// Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
+#pragma config FOSC = INTRC_NOCLKOUT   //configuracion de oscilador interno
+//#pragma config FOSC = EXTRC_NOCLKOUT// Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -46,15 +47,22 @@ Descripcion:
 //-------DIRECTIVAS DEL COMPILADOR
 #define _XTAL_FREQ 8000000
 //-------VARIABLES DE PROGRAMA
-unsigned char desde_contador;
-unsigned char desde_pot;
-unsigned char desde_sensor;
+unsigned char desde_contador;       //variable que recibe contador
+unsigned char desde_pot;            //variable que recibe potenciometro
+unsigned char desde_sensor;         //variable que recibe sensor
+uint8_t NUM;                        //variable arbitraria
+char Cen3 = 0;                      //centenas de temperatura
+char Dec3 = 0;                      //decenas de tempertarua
+char Un3 = 0;                       //unidades de temperatura
+char AC3 = 0;                       
+char AD3 = 0;
+char AU3 = 0;
 /*-----------------------------------------------------------------------------
  ------------------------ PROTOTIPOS DE FUNCIONES ------------------------------
  -----------------------------------------------------------------------------*/
 void setup(void);
-void mapeos(void);
 unsigned char datos_ascii(uint8_t numero);
+void temperatura(void);
 uint8_t lcd_ascii();
 /*-----------------------------------------------------------------------------
  ----------------------------- MAIN LOOP --------------------------------------
@@ -67,6 +75,7 @@ void main(void) {
     __delay_ms(1);
     while(1)
     {
+        temperatura();
         //-----SENCUENCIA INICIAL PARA MANDAR
         I2C_Master_Start();
         I2C_Master_Write(0x50);
@@ -79,24 +88,28 @@ void main(void) {
         desde_contador = I2C_Master_Read(0);
         I2C_Master_Stop();
         __delay_ms(200);
-        //PORTD=desde_contador;
         //-----RECEPCION DE POTENCIOMETRO
         I2C_Master_Start();
         I2C_Master_Write(0x61);
-        desde_pot = I2C_Master_Read(0);
+        desde_pot =I2C_Master_Read(0);
         I2C_Master_Stop();
         __delay_ms(200);
-        PORTD=desde_pot;
+        //------COMUNICACION INICIAL CON SENSOR
+        I2C_Master_Start();     //Escribir
+        I2C_Master_Write(0x80);
+        I2C_Master_Write(0xF3);
+        I2C_Master_Stop();
+        __delay_ms(100);
         //-----RECEPCION DE SENSOR
         I2C_Master_Start();
         I2C_Master_Write(0x81);
-        desde_sensor= I2C_Master_Read(0);
+        desde_sensor = I2C_Master_Read(0);
         I2C_Master_Stop();
         __delay_ms(200);
-        //PORTD=desde_sensor;
+        
         //------DESPLEGAR VALORES EN LCD
         lcd_linea(1,1);             //selecciono la linea 1 para escribir
-        show(" S1   S2   S3 ");     //mensaje a enviar linea 1
+        show("Count Pot  Temp");     //mensaje a enviar linea 1
         lcd_linea(2,1);             //selecciono la linea 2 para escibrir
         show(lcd_ascii());          //mensaje a enviar linea 2
     }
@@ -106,28 +119,29 @@ void main(void) {
  ---------------------------------- SET UP -----------------------------------
  -----------------------------------------------------------------------------*/
 void setup(void){
+    //-------CONFIGURACION ENTRADAS ANALOGICAS
     ANSEL = 0;
     ANSELH = 0;
+    //-------CONFIGURACION IN/OUT
     TRISA = 0;
     TRISB = 0;
     TRISD = 0;
     TRISE = 0;
+    //-------LIMPIEZA DE PUERTOS
     PORTA = 0;
     PORTB = 0;
     PORTD = 0;
     PORTE = 0;
+    //-------CONFIGURACION DE RELOJ A 8MHz
+    OSCCONbits.IRCF=0b111;      //Freq a 8MHz
+    OSCCONbits.SCS=1;           //Oscilador interno
+    //-------LIMPIEZA DE PUERTOS
     I2C_Master_Init(100000);        // Inicializar Comuncaci�n I2C
     
 }
 /*-----------------------------------------------------------------------------
  --------------------------------- FUNCIONES ----------------------------------
  -----------------------------------------------------------------------------*/
-
-//------FUNCION PARA MAPEAR VOLTAJES
-void mapeos(void)
-{
-    
-}
 //------FUNCION PARA CONVERTIR A ASCII
 unsigned char datos_ascii(uint8_t numero) 
 {
@@ -181,21 +195,41 @@ unsigned char datos_ascii(uint8_t numero)
 uint8_t lcd_ascii()
 {
     uint8_t random[16];                    
-    random[0]=datos_ascii(desde_contador);
-    random[1]=0x2E;                     //punto decimal
-    random[2]=datos_ascii(desde_contador);    
-    random[3]=datos_ascii(desde_contador);   
-    random[4]=32;                       //se deja espacio 
-    random[5]=datos_ascii(desde_contador);   
-    random[6]=0x2E;                     //punto decimal
-    random[7]=datos_ascii(desde_contador);    
-    random[8]=datos_ascii(desde_contador);   
-    random[9]=32;                       //se deja espacio
-    random[10]=datos_ascii(desde_contador);  
-    random[11]=32;      
-    random[12]=32;      
-    random[13]=32;      
-    random[14]=32;                      //se deja espacio
-    random[15]=32;                      //se deja espacio
+    random[0]=32;                                   //espacio
+    random[1]=32;                                   //espacio
+    random[2]=datos_ascii((desde_contador/10)%10);  //decenas contador
+    random[3]=datos_ascii(desde_contador%10);       //unidades contador
+    random[4]=32;                                   //espacio 
+    random[5]=datos_ascii(((2*desde_pot)/100)%10);  //unidades pot    
+    random[6]=0x2E;                                 //punto decimal   
+    random[7]=datos_ascii(((2*desde_pot)/10)%10);   //decemas pot
+    random[8]=datos_ascii(desde_pot%10);            //centecimas pot
+    random[9]=86;
+    random[10]=32;                                 //voltaje
+    random[11]=AC3;      
+    random[12]=AD3;    
+    random[13]=AU3;      
+    random[14]=0xDF;                      //se deja espacio
+    random[15]=67;                      //se deja espacio
     return random;                      //se retorna el valor para el lcd
+}
+//datos_ascii((desde_sensor/10)%10);
+void temperatura(void){
+    if (desde_sensor>=68){      //Conversión de números positivos para temperatura
+        NUM = 24*desde_sensor/35-1632/35;
+        Cen3 = NUM/100;
+        Dec3 = (NUM-Cen3*100)/10;
+        Un3 = NUM-Cen3*100-Dec3*10;
+        AC3 = datos_ascii(Cen3);
+        AD3 = datos_ascii(Dec3);
+        AU3 = datos_ascii(Un3);
+    }
+    else{
+        NUM = (877/19)-13*desde_sensor/19;      //Conversión de números negativos para temperatura
+        AC3 = 0x2D;
+        Dec3 = NUM/10;
+        Un3 = NUM - Dec3*10;
+        AD3 = datos_ascii(Dec3);
+        AU3 = datos_ascii(Un3);
+    }
 }
